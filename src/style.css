@@ -228,7 +228,7 @@ header::before {
     grid-template-columns: repeat(2, 1fr);
     column-gap: 24px;
     row-gap: 24px;
-    padding: 80px 32px 80px;
+    padding: 120px 32px 80px;
     max-width: 1920px;
     margin: 0 auto;
 }
@@ -776,7 +776,7 @@ a.project-card {
 
     .project-grid {
         grid-template-columns: 1fr;
-        padding: 70px 20px 60px;
+        padding: 100px 20px 60px;
         gap: 16px;
     }
 
