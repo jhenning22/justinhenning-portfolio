@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justin Henning - Cinematographer</title>
+    <link rel="stylesheet" href="style.css?v=20">
+    <style>
+        /* Font: Tonka Medium Condensed - only for site title */
+        @font-face {
+            font-family: 'Tonka';
+            src: url('fonts/Tonka-MediumCondensed.woff2') format('woff2'),
+                 url('fonts/Tonka-MediumCondensed.woff') format('woff');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* Fix header alignment for two-line title */
+        header {
+            align-items: flex-start !important;
+            padding-top: 24px !important;
+        }
+
+        .header-left,
+        .header-right {
+            padding-top: 0 !important;
+        }
+
+        /* Site title styling */
+        .header-center h1 {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 4px !important;
+            line-height: 1 !important;
+        }
+
+        .header-center h1 .name {
+            font-size: 21.5px !important;
+            font-weight: 500 !important;
+            letter-spacing: 0.05em !important;
+        }
+
+        .header-center h1 .title {
+            font-size: 12px !important;
+            font-weight: 400 !important;
+            letter-spacing: 0.135em !important;
+        }
+
+        /* Mobile: Hide full text, show short text */
+        .info-short {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            /* Header mobile adjustments */
+            .info-full {
+                display: none;
+            }
+
+            .info-short {
+                display: inline;
+            }
+
+            header {
+                padding: 16px 16px 6px 16px !important;
+                transition: transform 0.3s ease-in-out;
+            }
+
+            header.header-hidden {
+                transform: translateY(-100%);
+            }
+
+            .header-center {
+                flex: 1 !important;
+                text-align: center !important;
+                padding-left: 50px !important;
+                padding-right: 50px !important;
+            }
+
+            .header-center h1 {
+                text-align: center !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Vertical Side Navigation -->
+    <nav class="side-nav main-side-nav">
+        <a href="#all" class="side-nav-btn active" data-filter="all">ALL</a>
+        <a href="#film" class="side-nav-btn" data-filter="film">FILM</a>
+        <a href="#commercial" class="side-nav-btn" data-filter="commercial">COMMERCIAL</a>
+        <a href="#automotive" class="side-nav-btn" data-filter="automotive">AUTOMOTIVE</a>
+    </nav>
+
+    <!-- Right Side Navigation for Photography -->
+    <nav class="side-nav-right">
+        <a href="../photography.html" class="side-nav-btn">PHOTOGRAPHY</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="main-header">
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="header-left">
+            <a href="work.html" class="nav-link active" id="workLink">WORK</a>
+        </div>
+        <div class="header-center">
+            <a href="index.html" class="header-title-link" id="headerTitleLink">
+                <h1>
+                    <span class="name">JUSTIN HENNING</span>
+                    <span class="title">CINEMATOGRAPHER</span>
+                </h1>
+            </a>
+        </div>
+        <div class="header-right">
+            <a href="#" class="nav-link" id="infoLink">
+                <span class="info-full">INFORMATION</span>
+                <span class="info-short">INFO</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <nav class="mobile-menu-nav">
+            <div class="mobile-menu-section mobile-menu-filters">
+                <a href="#all" class="mobile-menu-btn" data-filter="all">ALL</a>
+                <a href="#film" class="mobile-menu-btn" data-filter="film">FILM</a>
+                <a href="#commercial" class="mobile-menu-btn" data-filter="commercial">COMMERCIAL</a>
+                <a href="#automotive" class="mobile-menu-btn" data-filter="automotive">AUTOMOTIVE</a>
+            </div>
+            <div class="mobile-menu-section mobile-menu-pages">
+                <a href="#" class="mobile-menu-btn" id="mobileInfoLink">INFORMATION</a>
+                <a href="../photography.html" class="mobile-menu-btn">PHOTOGRAPHY</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main id="mainContent">
+
+        <!-- Project Grid -->
+        <div class="project-grid">
+            <!-- Your Lucky Day -->
+            <a href="projects/your-lucky-day.html" class="project-card" data-category="film" data-project="0">
+                <div class="project-image" style="background-image: url('media/thumbnails/your-lucky-day.jpg')"></div>
+                <video class="project-video" muted loop playsinline preload="none">
+                    <source data-src="media/previews/your-lucky-day.mp4?v=2" type="video/mp4">
+                </video>
+                <div class="project-info">
+                    <div class="project-number"></div>
+                    <div class="project-title">
+                        <h3>YOUR LUCKY DAY</h3>
+                        <p>Film</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Woodford Reserve -->
+            <a href="projects/woodford-reserve.html" class="project-card" data-category="commercial" data-project="1">
+                <div class="project-image" style="background-image: url('media/thumbnails/woodford-reserve.jpg')"></div>
+                <video class="project-video" muted loop playsinline preload="none">
+                    <source data-src="media/previews/woodford-reserve.mp4?v=3" type="video/mp4">
+                </video>
+                <div class="project-info">
+                    <div class="project-number"></div>
+                    <div class="project-title">
+                        <h3>WOODFORD RESERVE</h3>
+                        <p>Commercial</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Huawei -->
+            <!-- KIA -->
+            <a href="projects/kia.html" class="project-card" data-category="automotive" data-project="2">
+                <div class="project-image" style="background-image: url('media/thumbnails/kia.jpg')"></div>
+                <video class="project-video" muted loop playsinline preload="none">
+                    <source data-src="media/previews/kia.mp4?v=4" type="video/mp4">
+                </video>
+                <div class="project-info">
+                    <div class="project-number"></div>
+                    <div class="project-title">
+                        <h3>KIA</h3>
+                        <p>Automotive</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Royal Bank of Canada -->
+            <a href="projects/royal-bank-of-canada.html" class="project-card" data-category="commercial" data-project="3">
+                <div class="project-image" style="background-image: url('media/thumbnails/rbc.jpg')"></div>
+                <video class="project-video" muted loop playsinline preload="none">
+                    <source data-src="media/previews/rbc.mp4?v=10" type="video/mp4">
+                </video>
+                <div class="project-info">
+                    <div class="project-number"></div>
+                    <div class="project-title">
+                        <h3>ROYAL BANK OF CANADA</h3>
+                        <p>Commercial</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- K&N -->
+            <a href="projects/k-n.html" class="project-card" data-category="automotive" data-project="4">
+                <div class="project-image" style="background-image: url('media/thumbnails/kn.jpg')"></div>
+                <video class="project-video" muted loop playsinline preload="none">
+                    <source data-src="media/previews/kn.mp4?v=2" type="video/mp4">
+                </video>
+                <div class="project-info">
+                    <div class="project-number"></div>
+                    <div class="project-title">
+                        <h3>K&N</h3>
+                        <p>Automotive</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- RAM -->
+            <a href="projects/ram.html" class="project-card" data-category="automotive" data-project="5">
+                <div class="project-image" style="background-image: url('media/thumbnails/ram.jpg')"></div>
+                <video class="project-video" muted loop playsinline preload="none">
+                    <source data-src="media/previews/ram.mp4" type="video/mp4">
+                </video>
+                <div class="project-info">
+                    <div class="project-number"></div>
+                    <div class="project-title">
+                        <h3>RAM</h3>
+                        <p>Automotive</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Audi -->
+            <a href="projects/audi.html" class="project-card" data-category="automotive" data-project="6">
+                <div class="project-image" style="background-image: url('media/thumbnails/audi.jpg')"></div>
+                <video class="project-video" muted loop playsinline preload="none">
+                    <source data-src="media/previews/audi.mp4?v=4" type="video/mp4">
+                </video>
+                <div class="project-info">
+                    <div class="project-number"></div>
+                    <div class="project-title">
+                        <h3>AUDI</h3>
+                        <p>Automotive</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Jeep -->
+            <a href="projects/jeep.html" class="project-card" data-category="automotive" data-project="7">
+                <div class="project-image" style="background-image: url('media/thumbnails/jeep.jpg')"></div>
+                <video class="project-video" muted loop playsinline preload="none">
+                    <source data-src="media/previews/jeep.mp4" type="video/mp4">
+                </video>
+                <div class="project-info">
+                    <div class="project-number"></div>
+                    <div class="project-title">
+                        <h3>JEEP</h3>
+                        <p>Automotive</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Ford -->
+            <a href="projects/ford.html" class="project-card" data-category="automotive" data-project="8">
+                <div class="project-image" style="background-image: url('media/thumbnails/ford.jpg')"></div>
+                <video class="project-video" muted loop playsinline preload="none">
+                    <source data-src="media/previews/ford.mp4?v=3" type="video/mp4">
+                </video>
+                <div class="project-info">
+                    <div class="project-number"></div>
+                    <div class="project-title">
+                        <h3>FORD</h3>
+                        <p>Automotive</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- American Outlaws -->
+            <a href="projects/american-outlaws.html" class="project-card" data-category="film" data-project="9">
+                <div class="project-image" style="background-image: url('media/thumbnails/american-outlaws.jpg')"></div>
+                <video class="project-video" muted loop playsinline preload="none">
+                    <source data-src="media/previews/american-outlaws.mp4?v=2" type="video/mp4">
+                </video>
+                <div class="project-info">
+                    <div class="project-number"></div>
+                    <div class="project-title">
+                        <h3>AMERICAN OUTLAWS</h3>
+                        <p>Film</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Ana Paula -->
+            <a href="projects/ana-paula.html" class="project-card" data-category="film" data-project="10">
+                <div class="project-image" style="background-image: url('media/thumbnails/ana-paula.jpg')"></div>
+                <video class="project-video" muted loop playsinline preload="none">
+                    <source data-src="media/previews/ana-paula.mp4?v=3" type="video/mp4">
+                </video>
+                <div class="project-info">
+                    <div class="project-number"></div>
+                    <div class="project-title">
+                        <h3>ANA PAULA</h3>
+                        <p>Film</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- La Lucha -->
+            <a href="projects/la-lucha.html" class="project-card" data-category="film" data-project="11">
+                <div class="project-image" style="background-image: url('media/thumbnails/la-lucha.jpg')"></div>
+                <video class="project-video" muted loop playsinline preload="none">
+                    <source data-src="media/previews/la-lucha.mp4" type="video/mp4">
+                </video>
+                <div class="project-info">
+                    <div class="project-number"></div>
+                    <div class="project-title">
+                        <h3>LA LUCHA</h3>
+                        <p>Film</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- PEI -->
+            <a href="projects/pei.html" class="project-card" data-category="commercial" data-project="12">
+                <div class="project-image" style="background-image: url('media/thumbnails/pei.jpg')"></div>
+                <video class="project-video" muted loop playsinline preload="none">
+                    <source data-src="media/previews/pei.mp4?v=3" type="video/mp4">
+                </video>
+                <div class="project-info">
+                    <div class="project-number"></div>
+                    <div class="project-title">
+                        <h3>PEI</h3>
+                        <p>Commercial</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Lamborghini -->
+            <a href="projects/lamborghini.html" class="project-card" data-category="automotive" data-project="13">
+                <div class="project-image" style="background-image: url('media/thumbnails/lamborghini.jpg')"></div>
+                <video class="project-video" muted loop playsinline preload="none">
+                    <source data-src="media/previews/lamborghini.mp4?v=2" type="video/mp4">
+                </video>
+                <div class="project-info">
+                    <div class="project-number"></div>
+                    <div class="project-title">
+                        <h3>LAMBORGHINI</h3>
+                        <p>Automotive</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Ralph Lauren -->
+            <a href="projects/ralph-lauren.html" class="project-card" data-category="commercial" data-project="14">
+                <div class="project-image" style="background-image: url('media/thumbnails/ralph-lauren.jpg')"></div>
+                <video class="project-video" muted loop playsinline preload="none">
+                    <source data-src="media/previews/ralph-lauren.mp4?v=2" type="video/mp4">
+                </video>
+                <div class="project-info">
+                    <div class="project-number"></div>
+                    <div class="project-title">
+                        <h3>RALPH LAUREN</h3>
+                        <p>Commercial</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Gatorade -->
+            <a href="projects/gatorade.html" class="project-card" data-category="commercial" data-project="15">
+                <div class="project-image" style="background-image: url('media/thumbnails/gatorade.jpg')"></div>
+                <video class="project-video" muted loop playsinline preload="none">
+                    <source data-src="media/previews/gatorade.mp4?v=2" type="video/mp4">
+                </video>
+                <div class="project-info">
+                    <div class="project-number"></div>
+                    <div class="project-title">
+                        <h3>GATORADE</h3>
+                        <p>Commercial</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Marriott -->
+            <a href="projects/marriott.html" class="project-card" data-category="commercial" data-project="16">
+                <div class="project-image" style="background-image: url('media/thumbnails/marriott.jpg?v=4')"></div>
+                <video class="project-video" muted loop playsinline preload="none">
+                    <source data-src="media/previews/marriott.mp4?v=4" type="video/mp4">
+                </video>
+                <div class="project-info">
+                    <div class="project-number"></div>
+                    <div class="project-title">
+                        <h3>MARRIOTT</h3>
+                        <p>Commercial</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Nikon: Clark Little -->
+            <a href="projects/nikon-clark-little.html" class="project-card" data-category="commercial" data-project="17">
+                <div class="project-image" style="background-image: url('media/thumbnails/nikon-clark.jpg')"></div>
+                <video class="project-video" muted loop playsinline preload="none">
+                    <source data-src="media/previews/nikon-clark.mp4" type="video/mp4">
+                </video>
+                <div class="project-info">
+                    <div class="project-number"></div>
+                    <div class="project-title">
+                        <h3>NIKON: CLARK LITTLE</h3>
+                        <p>Commercial</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Nikon: Ivar -->
+            <a href="projects/nikon-ivar.html" class="project-card" data-category="commercial" data-project="18">
+                <div class="project-image" style="background-image: url('media/thumbnails/nikon-ivar.jpg')"></div>
+                <video class="project-video" muted loop playsinline preload="none">
+                    <source data-src="media/previews/nikon-ivar.mp4?v=2" type="video/mp4">
+                </video>
+                <div class="project-info">
+                    <div class="project-number"></div>
+                    <div class="project-title">
+                        <h3>NIKON: IVAR</h3>
+                        <p>Commercial</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Chevrolet -->
+            <a href="projects/chevrolet.html" class="project-card" data-category="commercial" data-project="19">
+                <div class="project-image" style="background-image: url('media/thumbnails/chevrolet.jpg')"></div>
+                <video class="project-video" muted loop playsinline preload="none">
+                    <source data-src="media/previews/chevrolet.mp4?v=2" type="video/mp4">
+                </video>
+                <div class="project-info">
+                    <div class="project-number"></div>
+                    <div class="project-title">
+                        <h3>CHEVROLET</h3>
+                        <p>Commercial</p>
+                    </div>
+                </div>
+            </a>
+
+
+
+            <!-- Adidas -->
+            <a href="projects/adidas.html" class="project-card" data-category="commercial" data-project="20">
+                <div class="project-image" style="background-image: url('media/thumbnails/adidas.jpg')"></div>
+                <video class="project-video" muted loop playsinline preload="none">
+                    <source data-src="media/previews/adidas.mp4?v=2" type="video/mp4">
+                </video>
+                <div class="project-info">
+                    <div class="project-number"></div>
+                    <div class="project-title">
+                        <h3>ADIDAS</h3>
+                        <p>Commercial</p>
+                    </div>
+                </div>
+            </a>
+
+
+            <!-- RAM: Boneyard -->
+            <a href="projects/ram-boneyard.html" class="project-card" data-category="automotive" data-project="21">
+                <div class="project-image" style="background-image: url('media/thumbnails/ram-boneyard.jpg')"></div>
+                <video class="project-video" muted loop playsinline preload="none">
+                    <source data-src="media/previews/ram-boneyard.mp4" type="video/mp4">
+                </video>
+                <div class="project-info">
+                    <div class="project-number"></div>
+                    <div class="project-title">
+                        <h3>RAM: BONEYARD</h3>
+                        <p>Automotive</p>
+                    </div>
+                </div>
+            </a>
+
+
+            <!-- Alfa Romeo -->
+            <a href="projects/alfa-romeo.html" class="project-card" data-category="automotive" data-project="22">
+                <div class="project-image" style="background-image: url('media/thumbnails/alfa-romeo.jpg')"></div>
+                <video class="project-video" muted loop playsinline preload="none">
+                    <source data-src="media/previews/alfa-romeo.mp4" type="video/mp4">
+                </video>
+                <div class="project-info">
+                    <div class="project-number"></div>
+                    <div class="project-title">
+                        <h3>ALFA ROMEO</h3>
+                        <p>Automotive</p>
+                    </div>
+                </div>
+            </a>
+
+
+
+            <!-- Tesla -->
+            <a href="projects/tesla.html" class="project-card" data-category="automotive" data-project="23">
+                <div class="project-image" style="background-image: url('media/thumbnails/tesla.jpg')"></div>
+                <video class="project-video" muted loop playsinline preload="none">
+                    <source data-src="media/previews/tesla.mp4" type="video/mp4">
+                </video>
+                <div class="project-info">
+                    <div class="project-number"></div>
+                    <div class="project-title">
+                        <h3>TESLA</h3>
+                        <p>Automotive</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <!-- Information Page -->
+    <div id="infoPage" class="info-page">
+        <div class="info-content">
+            <!-- Biography Section with Photo -->
+            <div class="info-row">
+                <div class="info-label">
+                    <h2>Biography</h2>
+                </div>
+                <div class="info-detail">
+                    <div class="info-image">
+                        <img src="../media/info-bts.webp" alt="Justin Henning on set">
+                    </div>
+                    <p>Justin T Henning is an accomplished ICG Local 600 Cinematographer based in Brooklyn, NY. He specializes in feature films and commercial projects, bringing a distinct visual sensibility and emotional depth to every production.</p>
+
+                    <p>His most recent works include Handled with Care, directed by Matthew James Thompson and starring Justin Min, as well as Ana Paula, directed by Leigh Marling and filmed on location in Durango, Mexico. Both feature films are set for release in 2026.</p>
+
+                    <p>Justin's earlier feature, Your Lucky Day, directed by Dan Brown and starring the late Angus Cloud of HBO's Euphoria, garnered widespread attention after successful theatrical screenings across the United States. The film went on to stream on Netflix, where it remained among the platform's Top 10 most-watched titles for two consecutive weeks.</p>
+
+                    <p>His debut feature, American Outlaws, directed by Sean McEwen, premiered at the 2023 Santa Barbara International Film Festival.</p>
+
+                    <p>In 2022, Justin earned a Best Cinematography nomination at the prestigious Camerimage Festival for his work on Ed Sheeran's music video "South of the Border," directed by Jason Koenig.</p>
+
+                    <p>Throughout his career, Justin has also collaborated on numerous high-profile commercial campaigns. His clients include Capital One, Elijah Craig, Sonos, Chevrolet, Ford, Jeep, Lamborghini, Audi, Alfa Romeo, Ram, Bentley, Adidas, Marriott, Nikon, Ralph Lauren, and Miller.</p>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="info-row">
+                <div class="info-label">
+                    <h2>Contact</h2>
+                </div>
+                <div class="info-detail">
+                    <div class="contact-columns">
+                        <div class="contact-column">
+                            <div class="contact-item">
+                                <p class="contact-title">US / WPA USA</p>
+                                <p>Phone: <a href="tel:+13106599965">(310) 659-9965</a></p>
+                                <p>Commercials: Steven - <a href="mailto:steven@wp-a.com">steven@wp-a.com</a></p>
+                                <p>Commercials: Kristen Billings - <a href="mailto:kristen@wp-a.com">kristen@wp-a.com</a></p>
+                                <p>Film & TV: Louiza Vick - <a href="mailto:louiza@wp-a.com">louiza@wp-a.com</a></p>
+                            </div>
+
+                            <div class="contact-item">
+                                <p class="contact-title">UK / WPA London</p>
+                                <p>Phone: <a href="tel:+442072879564">+44 (0)207 287 9564</a></p>
+                                <p>Mobile: <a href="tel:+447768617531">+44 (0)776 86 17531</a></p>
+                                <p>Commercials: Barnaby Laws - <a href="mailto:barnaby@wp-a.co.uk">barnaby@wp-a.co.uk</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contact-column">
+                            <div class="contact-item">
+                                <p class="contact-title">Mexico & Latam / 9AM</p>
+                                <p>Phone: <a href="tel:+525627734765">+52 (562) 773-4765</a></p>
+                                <p>Commercials: Rodrigo Gavaldón - <a href="mailto:rodrigo@9am.mx">rodrigo@9am.mx</a></p>
+                            </div>
+
+                            <div class="contact-item">
+                                <p class="contact-title">Personal Contact</p>
+                                <p>Email: <a href="mailto:henning.justin@gmail.com">henning.justin@gmail.com</a></p>
+                                <p>Instagram: <a href="https://instagram.com/justinthenning" target="_blank">@justinthenning</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Row -->
+            <div class="info-footer">
+                <div class="footer-links">
+                    <a href="https://www.instagram.com/justinthenning/" target="_blank" class="social-btn">INSTAGRAM</a>
+                    <a href="archive.html" class="social-btn">ARCHIVE</a>
+                </div>
+                <div class="footer-credit">
+                    <p>Typeface: Tonka by Céline Hurka and Huw Williams</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js?v=9"></script>
+</body>
+</html>

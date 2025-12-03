@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justin Henning - Cinematographer</title>
+
+    
+    <link rel="stylesheet" href="../style.css?v=20">
+    
+
+    
+
+    
+
+    <style>
+        /* Font: Tonka Medium Condensed - only for site title */
+        @font-face {
+            font-family: 'Tonka';
+            src: url('../fonts/Tonka-MediumCondensed.woff2') format('woff2'),
+                 url('../fonts/Tonka-MediumCondensed.woff') format('woff');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* Fix header alignment for two-line title */
+        header {
+            align-items: flex-start !important;
+            padding-top: 24px !important;
+        }
+
+        .header-left,
+        .header-right {
+            padding-top: 0 !important;
+        }
+
+        /* Site title styling */
+        .header-center h1 {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 4px !important;
+            line-height: 1 !important;
+        }
+
+        .header-center h1 .name {
+            font-size: 21.5px !important;
+            font-weight: 500 !important;
+            letter-spacing: 0.05em !important;
+        }
+
+        .header-center h1 .title {
+            font-size: 12px !important;
+            font-weight: 400 !important;
+            letter-spacing: 0.135em !important;
+        }
+
+        /* Mobile: Hide full text, show short text */
+        .info-short {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            /* Header mobile adjustments */
+            .info-full {
+                display: none;
+            }
+
+            .info-short {
+                display: inline;
+            }
+
+            header {
+                padding: 16px 16px 6px 16px !important;
+                transition: transform 0.3s ease-in-out;
+            }
+
+            header.header-hidden {
+                transform: translateY(-100%);
+            }
+
+            .header-center {
+                flex: 1 !important;
+                text-align: center !important;
+                padding-left: 50px !important;
+                padding-right: 50px !important;
+            }
+
+            .header-center h1 {
+                text-align: center !important;
+            }
+        }
+
+        
+
+        
+        /* Project page specific styles */
+        body {
+            background: #fff;
+            color: #000;
+            overflow-x: hidden;
+            padding-left: 60px;
+            padding-right: 60px;
+        }
+
+        /* Force black text for header and navigation on project pages */
+        .main-header,
+        .main-header *,
+        .header-left,
+        .header-right,
+        .header-center,
+        .nav-link,
+        .header-title-link,
+        .header-title-link *,
+        .header-center h1,
+        .header-center h1 .name,
+        .header-center h1 .title {
+            color: #000 !important;
+        }
+
+        .project-page-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 24px 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            background: #fff;
+        }
+
+        .header-left,
+        .header-right {
+            flex: 0 0 auto;
+            padding-top: 0;
+        }
+
+        .header-left {
+            padding-left: calc(60px + 32px);
+        }
+
+        .header-right {
+            padding-right: calc(60px + 32px);
+        }
+
+        .header-center {
+            flex: 1;
+            text-align: center;
+        }
+
+        .header-title-link {
+            display: inline-block;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .header-title-link:hover {
+            opacity: 1;
+        }
+
+        .header-center h1 {
+            font-family: 'Tonka', sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 2.5px;
+        }
+
+        .back-link {
+            font-family: 'Tonka', sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            color: #000 !important;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-page-header * {
+            color: #000 !important;
+        }
+
+        .back-link:hover {
+            opacity: 0.6;
+        }
+
+        /* Side Navigation */
+        .side-nav {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 500;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            padding: 0 20px;
+        }
+
+        .side-nav-btn {
+            background: none;
+            border: none;
+            color: #000 !important;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            padding: 0;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            white-space: nowrap;
+            position: relative;
+            font-family: 'Tonka', sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            text-decoration: none;
+        }
+
+        .side-nav-btn:hover {
+            opacity: 0.6;
+        }
+
+        .side-nav * {
+            color: #000 !important;
+        }
+
+        .side-nav-right * {
+            color: #000 !important;
+        }
+
+        .side-nav-right {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 500;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            padding: 0 20px;
+        }
+
+        .side-nav-right .side-nav-btn {
+            transform: rotate(0deg);
+        }
+
+        .project-container {
+            max-width: 1920px;
+            margin: 0 auto;
+            padding: 120px 32px 4rem;
+        }
+
+        .project-header {
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .project-title {
+            font-family: 'Tonka', sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin: 0;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .project-subtitle {
+            font-family: 'Tonka', sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            color: #000;
+            margin: 0;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 41.78%; /* 2.39:1 aspect ratio */
+            
+            background: #000;
+            margin: 0;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .project-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 1rem;
+        }
+
+        .project-details p {
+            margin-bottom: 1.5rem;
+        }
+
+        .project-details strong {
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .project-container {
+                padding: 100px 0 2rem;
+            }
+
+            .project-details {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .side-nav,
+            .side-nav-right {
+                display: none;
+            }
+        }
+        
+
+        
+    </style>
+
+    
+</head>
+<body>
+    
+
+    <!-- Header -->
+<header class="main-header">
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="header-left">
+        
+        <a href="../work.html" class="nav-link" id="workLink">WORK</a>
+        
+    </div>
+    <div class="header-center">
+        <a href="../index.html" class="header-title-link" id="headerTitleLink">
+            <h1>
+                <span class="name">JUSTIN HENNING</span>
+                <span class="title">CINEMATOGRAPHER</span>
+            </h1>
+        </a>
+    </div>
+    <div class="header-right">
+        
+        <a href="../work.html#info" class="nav-link" id="infoLink">
+            <span class="info-full">INFORMATION</span>
+            <span class="info-short">INFO</span>
+        </a>
+        
+    </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-menu-nav">
+        
+        <div class="mobile-menu-section mobile-menu-pages">
+            
+            <a href="../work.html#info" class="mobile-menu-btn" id="mobileInfoLink">INFORMATION</a>
+            
+            <a href="../photography.html" class="mobile-menu-btn">PHOTOGRAPHY</a>
+        </div>
+    </nav>
+</div>
+
+
+    
+<!-- Project Side Navigation -->
+<nav class="side-nav">
+    <a href="../work.html" class="side-nav-btn">BACK TO WORK</a>
+</nav>
+
+<nav class="side-nav-right">
+    <a href="../photography.html" class="side-nav-btn">PHOTOGRAPHY</a>
+</nav>
+
+<!-- Project Content -->
+<div class="project-container">
+    <!-- Title and Category -->
+    <div class="project-header">
+        <h1 class="project-title">MARRIOTT</h1>
+        
+    </div>
+
+    <!-- Video Player -->
+    
+    <div class="video-wrapper">
+        <iframe
+            src="https://player.vimeo.com/video/124659863?autoplay=1&title=0&byline=0&portrait=0"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+            title="MARRIOTT">
+        </iframe>
+    </div>
+    
+
+    <!-- Project Details -->
+    
+    <div class="project-details">
+        <div class="project-details-left">
+            
+                
+            
+        </div>
+
+        <div class="project-details-right">
+            
+                
+            
+        </div>
+    </div>
+    
+</div>
+
+<script src="https://player.vimeo.com/api/player.js"></script>
+
+
+    
+
+    
+</body>
+</html>

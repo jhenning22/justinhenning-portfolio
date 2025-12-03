@@ -1,0 +1,39 @@
+---
+layout: layouts/base.njk
+title: Justin Henning - Cinematographer - Work
+permalink: /work.html
+isMainPage: true
+hasSideNav: true
+workPageStyles: true
+---
+
+<!-- Main Content -->
+<main id="mainContent">
+
+    <!-- Project Grid -->
+    <div class="project-grid">
+        {% for project in projects.projects %}
+        {% if project.active %}
+        <!-- {{ project.title }} -->
+        <a href="/work/{{ project.slug }}/" class="project-card{% if project.large %} large{% endif %}" data-category="{{ project.category | lower }}" data-project="{{ loop.index0 }}">
+            <div class="media-container">
+                <div class="project-image" style="background-image: url('{{ project.thumbnail }}')"></div>
+                <video class="project-video" muted loop playsinline preload="none">
+                    <source data-src="{{ project.preview }}?v=2" type="video/mp4">
+                </video>
+            </div>
+            <div class="project-info">
+                <div class="project-number"></div>
+                <div class="project-title">
+                    <h3>{{ project.title | safe }}</h3>
+                    <p>{{ project.category | capitalize }}</p>
+                </div>
+            </div>
+        </a>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+</main>
+
+<script src="/work-script.js"></script>

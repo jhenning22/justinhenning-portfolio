@@ -1,0 +1,310 @@
+---
+layout: layouts/base.njk
+isMainPage: false
+isProjectPage: true
+hasInfoOverlay: false
+hasSideNav: false
+projectPageStyles: true
+hideHamburger: false
+---
+
+<!-- Vertical Side Navigation -->
+<nav class="side-nav main-side-nav">
+    <a href="../../work.html#all" class="side-nav-btn">ALL</a>
+    <a href="../../work.html#film" class="side-nav-btn">FILM</a>
+    <a href="../../work.html#commercial" class="side-nav-btn">COMMERCIAL</a>
+    <a href="../../work.html#automotive" class="side-nav-btn">AUTOMOTIVE</a>
+</nav>
+
+<!-- Right Side Navigation for Photography -->
+<nav class="side-nav-right">
+    <a href="../../photography.html" class="side-nav-btn">PHOTOGRAPHY</a>
+</nav>
+
+<!-- Project Content -->
+<div class="project-container">
+    <!-- Title and Category Above Video -->
+    <div class="project-header">
+        <h1 class="project-title">{{ project.title | safe }}</h1>
+        {% if project.subtitle %}
+        <p class="project-subtitle">{{ project.subtitle }}</p>
+        {% endif %}
+    </div>
+
+    <!-- Video Player -->
+    {% if project.vimeoId %}
+    <div class="video-wrapper">
+        <iframe
+            src="https://player.vimeo.com/video/{{ project.vimeoId }}?autoplay=1&title=0&byline=0&portrait=0"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+    </div>
+    {% endif %}
+
+    <!-- Project Details Below Video -->
+    {% if project.detailsLeft or project.detailsRight %}
+    <div class="project-details">
+        <div class="project-details-left">
+            {% if project.detailsLeft %}
+                {% for detail in project.detailsLeft %}
+                <p><strong>{{ detail[0] }}:</strong> {{ detail[1] }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="project-details-right">
+            {% if project.detailsRight %}
+                {% for detail in project.detailsRight %}
+                <p><strong>{{ detail[0] }}:</strong> {{ detail[1] }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Reviews Section (conditional) -->
+    {% if project.reviews %}
+    <div class="project-reviews">
+        <h2>Reviews</h2>
+        <div class="review-links">
+            {% for review in project.reviews %}
+            <a href="{{ review.url }}" target="_blank" rel="noopener noreferrer" class="review-link">
+                {{ review.title }}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Posters Section (conditional) -->
+    {% if project.posters %}
+    <div class="project-posters">
+        <h2>Posters</h2>
+        <div class="poster-grid">
+            {% for poster in project.posters %}
+            <div class="poster-item">
+                <img src="{{ poster }}" alt="{{ project.title }} Poster">
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Navigation -->
+<div class="project-navigation-wrapper">
+    <div class="project-navigation-divider"></div>
+    <div class="more-projects-label">More Projects</div>
+    <nav class="project-navigation">
+        <a href="#" class="nav-card" id="prevButton">
+            <div class="nav-caption">
+                <span class="nav-title" id="prevTitle"></span>
+                <span class="nav-subtitle" id="prevSubtitle"></span>
+            </div>
+            <div class="nav-thumbnail">
+                <div class="nav-thumbnail-image" id="prevThumbnail"></div>
+                <video class="nav-thumbnail-video" id="prevVideo" muted loop playsinline preload="none">
+                    <source id="prevVideoSource" type="video/mp4">
+                </video>
+            </div>
+        </a>
+        <a href="#" class="nav-card" id="nextButton">
+            <div class="nav-caption">
+                <span class="nav-title" id="nextTitle"></span>
+                <span class="nav-subtitle" id="nextSubtitle"></span>
+            </div>
+            <div class="nav-thumbnail">
+                <div class="nav-thumbnail-image" id="nextThumbnail"></div>
+                <video class="nav-thumbnail-video" id="nextVideo" muted loop playsinline preload="none">
+                    <source id="nextVideoSource" type="video/mp4">
+                </video>
+            </div>
+        </a>
+    </nav>
+</div>
+
+<script>
+    // Hamburger menu functionality
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const body = document.body;
+
+    if (hamburgerBtn && mobileMenu) {
+        hamburgerBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const isOpen = mobileMenu.classList.contains('active');
+
+            if (isOpen) {
+                mobileMenu.classList.remove('active');
+                hamburgerBtn.classList.remove('active');
+                body.classList.remove('menu-open');
+            } else {
+                mobileMenu.classList.add('active');
+                hamburgerBtn.classList.add('active');
+                body.classList.add('menu-open');
+            }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (mobileMenu.classList.contains('active') &&
+                !mobileMenu.contains(e.target) &&
+                !hamburgerBtn.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+                hamburgerBtn.classList.remove('active');
+                body.classList.remove('menu-open');
+            }
+        });
+    }
+
+    // Filter-aware navigation
+    const urlParams = new URLSearchParams(window.location.search);
+    const activeFilter = urlParams.get('filter') || 'all';
+
+    // Update back link to preserve filter
+    const backLink = document.getElementById('backLink');
+    if (backLink && activeFilter && activeFilter !== 'all') {
+        backLink.href = `../work.html#${activeFilter}`;
+    }
+
+    // Current project info
+    const currentProject = {
+        index: {{ project.id - 1 }},
+        title: "{{ project.title | safe }}",
+        category: "{{ project.category }}",
+        slug: "{{ project.slug }}"
+    };
+
+    // All projects array with thumbnail and preview paths
+    const projects = [
+        {% for p in projects.projects %}
+        {% if p.active %}
+        { title: "{{ p.title | safe }}", category: "{{ p.category }}", slug: "{{ p.slug }}", thumbnail: "{{ p.thumbnail }}", preview: "{{ p.preview }}" }{% if not loop.last %},{% endif %}
+        {% endif %}
+        {% endfor %}
+    ];
+
+    // Filter projects based on active filter
+    function getFilteredProjects() {
+        if (activeFilter === 'all') {
+            return projects;
+        }
+        return projects.filter(p => p.category.toLowerCase() === activeFilter.toLowerCase());
+    }
+
+    // Get prev/next project slugs
+    function updateNavigation() {
+        const filteredProjects = getFilteredProjects();
+        const currentIndex = filteredProjects.findIndex(p => p.slug === currentProject.slug);
+
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+        const prevThumbnail = document.getElementById('prevThumbnail');
+        const nextThumbnail = document.getElementById('nextThumbnail');
+        const prevTitle = document.getElementById('prevTitle');
+        const nextTitle = document.getElementById('nextTitle');
+        const prevSubtitle = document.getElementById('prevSubtitle');
+        const nextSubtitle = document.getElementById('nextSubtitle');
+
+        let prevProject, nextProject;
+
+        if (currentIndex > 0) {
+            prevProject = filteredProjects[currentIndex - 1];
+            prevButton.href = `../${prevProject.slug}/${activeFilter !== 'all' ? `?filter=${activeFilter}` : ''}`;
+        } else {
+            // Wrap to last
+            prevProject = filteredProjects[filteredProjects.length - 1];
+            prevButton.href = `../${prevProject.slug}/${activeFilter !== 'all' ? `?filter=${activeFilter}` : ''}`;
+        }
+
+        if (currentIndex < filteredProjects.length - 1) {
+            nextProject = filteredProjects[currentIndex + 1];
+            nextButton.href = `../${nextProject.slug}/${activeFilter !== 'all' ? `?filter=${activeFilter}` : ''}`;
+        } else {
+            // Wrap to first
+            nextProject = filteredProjects[0];
+            nextButton.href = `../${nextProject.slug}/${activeFilter !== 'all' ? `?filter=${activeFilter}` : ''}`;
+        }
+
+        // Set thumbnail backgrounds, videos and titles
+        const prevVideo = document.getElementById('prevVideo');
+        const nextVideo = document.getElementById('nextVideo');
+        const prevVideoSource = document.getElementById('prevVideoSource');
+        const nextVideoSource = document.getElementById('nextVideoSource');
+
+        if (prevProject) {
+            if (prevProject.thumbnail) {
+                prevThumbnail.style.backgroundImage = `url('${prevProject.thumbnail}')`;
+            }
+            if (prevProject.preview) {
+                prevVideoSource.setAttribute('data-src', prevProject.preview);
+            }
+            prevTitle.textContent = prevProject.title;
+            prevSubtitle.textContent = prevProject.category;
+        }
+        if (nextProject) {
+            if (nextProject.thumbnail) {
+                nextThumbnail.style.backgroundImage = `url('${nextProject.thumbnail}')`;
+            }
+            if (nextProject.preview) {
+                nextVideoSource.setAttribute('data-src', nextProject.preview);
+            }
+            nextTitle.textContent = nextProject.title;
+            nextSubtitle.textContent = nextProject.category;
+        }
+    }
+
+    // Initialize navigation
+    updateNavigation();
+
+    // Add hover event listeners for video preview
+    const prevCard = document.getElementById('prevButton');
+    const nextCard = document.getElementById('nextButton');
+    const prevVideo = document.getElementById('prevVideo');
+    const nextVideo = document.getElementById('nextVideo');
+    const prevVideoSource = document.getElementById('prevVideoSource');
+    const nextVideoSource = document.getElementById('nextVideoSource');
+
+    prevCard.addEventListener('mouseenter', () => {
+        const dataSrc = prevVideoSource.getAttribute('data-src');
+        if (dataSrc && !prevVideoSource.getAttribute('src')) {
+            prevVideoSource.setAttribute('src', dataSrc);
+            prevVideo.load();
+        }
+        prevVideo.play().catch(() => {});
+    });
+
+    prevCard.addEventListener('mouseleave', () => {
+        prevVideo.pause();
+        prevVideo.currentTime = 0;
+    });
+
+    nextCard.addEventListener('mouseenter', () => {
+        const dataSrc = nextVideoSource.getAttribute('data-src');
+        if (dataSrc && !nextVideoSource.getAttribute('src')) {
+            nextVideoSource.setAttribute('src', dataSrc);
+            nextVideo.load();
+        }
+        nextVideo.play().catch(() => {});
+    });
+
+    nextCard.addEventListener('mouseleave', () => {
+        nextVideo.pause();
+        nextVideo.currentTime = 0;
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            document.getElementById('prevButton').click();
+        } else if (e.key === 'ArrowRight') {
+            document.getElementById('nextButton').click();
+        } else if (e.key === 'Escape') {
+            window.location.href = '../work.html' + (activeFilter !== 'all' ? `#${activeFilter}` : '');
+        }
+    });
+</script>

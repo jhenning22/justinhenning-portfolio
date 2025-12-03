@@ -1,0 +1,236 @@
+---
+layout: layouts/base.njk
+title: Justin Henning - Photography
+permalink: /photography.html
+isMainPage: true
+hasPhotographyStyles: true
+photographyPageStyles: true
+---
+
+<!-- Vertical Side Navigation -->
+<nav class="side-nav">
+    <a href="/work.html#all" class="side-nav-btn" data-filter="all">ALL</a>
+    <a href="/work.html#film" class="side-nav-btn" data-filter="film">FILM</a>
+    <a href="/work.html#commercial" class="side-nav-btn" data-filter="commercial">COMMERCIAL</a>
+    <a href="/work.html#automotive" class="side-nav-btn" data-filter="automotive">AUTOMOTIVE</a>
+</nav>
+
+<!-- Right Side Navigation for Photography -->
+<nav class="side-nav-right">
+    <a href="/photography.html" class="side-nav-btn active">PHOTOGRAPHY</a>
+</nav>
+
+<!-- Main Content -->
+<main id="mainContent">
+    <div class="page-title">
+        <h2>PHOTOGRAPHY</h2>
+    </div>
+
+    <!-- Photography Grid -->
+    <div class="photography-grid">
+        <div class="photo-item">
+            <img src="/media/photography/001.jpg" alt="NYC Portfolio 001" loading="lazy">
+        </div>
+        <div class="photo-item">
+            <img src="/media/photography/002.jpg" alt="NYC Portfolio 002" loading="lazy">
+        </div>
+        <div class="photo-item">
+            <img src="/media/photography/003.jpg" alt="NYC Portfolio 003" loading="lazy">
+        </div>
+        <div class="photo-item">
+            <img src="/media/photography/004.jpg" alt="NYC Portfolio 004" loading="lazy">
+        </div>
+        <div class="photo-item">
+            <img src="/media/photography/005.jpg" alt="NYC Portfolio 005" loading="lazy">
+        </div>
+        <div class="photo-item">
+            <img src="/media/photography/006.jpg" alt="NYC Portfolio 006" loading="lazy">
+        </div>
+        <div class="photo-item">
+            <img src="/media/photography/007.jpg" alt="NYC Portfolio 007" loading="lazy">
+        </div>
+        <div class="photo-item">
+            <img src="/media/photography/008.jpg" alt="NYC Portfolio 008" loading="lazy">
+        </div>
+        <div class="photo-item">
+            <img src="/media/photography/009.jpg" alt="NYC Portfolio 009" loading="lazy">
+        </div>
+        <div class="photo-item">
+            <img src="/media/photography/010.jpg" alt="NYC Portfolio 010" loading="lazy">
+        </div>
+        <div class="photo-item">
+            <img src="/media/photography/011.jpg" alt="NYC Portfolio 011" loading="lazy">
+        </div>
+        <div class="photo-item">
+            <img src="/media/photography/012.jpg" alt="NYC Portfolio 012" loading="lazy">
+        </div>
+        <div class="photo-item">
+            <img src="/media/photography/013.jpg" alt="NYC Portfolio 013" loading="lazy">
+        </div>
+        <div class="photo-item">
+            <img src="/media/photography/014.jpg" alt="NYC Portfolio 014" loading="lazy">
+        </div>
+        <div class="photo-item">
+            <img src="/media/photography/015.jpg" alt="NYC Portfolio 015" loading="lazy">
+        </div>
+        <div class="photo-item">
+            <img src="/media/photography/016.jpg" alt="NYC Portfolio 016" loading="lazy">
+        </div>
+        <div class="photo-item">
+            <img src="/media/photography/017.jpg" alt="NYC Portfolio 017" loading="lazy">
+        </div>
+        <div class="photo-item">
+            <img src="/media/photography/018.jpg" alt="NYC Portfolio 018" loading="lazy">
+        </div>
+        <div class="photo-item">
+            <img src="/media/photography/019.jpg" alt="NYC Portfolio 019" loading="lazy">
+        </div>
+        <div class="photo-item">
+            <img src="/media/photography/020.jpg" alt="NYC Portfolio 020" loading="lazy">
+        </div>
+    </div>
+</main>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close lightbox"></button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image"></button>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image"></button>
+    <div class="lightbox-content">
+        <img class="lightbox-image" id="lightboxImage" src="" alt="">
+    </div>
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
+<script>
+    // Mobile Menu Functionality for Photography Page
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    // Toggle mobile menu
+    hamburgerBtn.addEventListener('click', () => {
+        const isOpening = !mobileMenu.classList.contains('active');
+        mobileMenu.classList.toggle('active');
+        hamburgerBtn.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
+
+        // Prevent body scroll when menu is open
+        if (isOpening) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (mobileMenu.classList.contains('active') &&
+            !mobileMenu.contains(e.target) &&
+            !hamburgerBtn.contains(e.target)) {
+            mobileMenu.classList.remove('active');
+            hamburgerBtn.classList.remove('active');
+            document.body.classList.remove('menu-open');
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    // Mobile header hide/show on scroll
+    let lastScrollTop = 0;
+    let scrollThreshold = 10;
+
+    window.addEventListener('scroll', () => {
+        if (window.innerWidth > 768) return;
+
+        const header = document.querySelector('header');
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (currentScroll <= 0) {
+            header.classList.remove('header-hidden');
+            return;
+        }
+
+        if (Math.abs(currentScroll - lastScrollTop) < scrollThreshold) {
+            return;
+        }
+
+        if (currentScroll > lastScrollTop) {
+            header.classList.add('header-hidden');
+        } else {
+            header.classList.remove('header-hidden');
+        }
+
+        lastScrollTop = currentScroll;
+    }, { passive: true });
+
+    // Lightbox Functionality
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+    const lightboxCounter = document.getElementById('lightboxCounter');
+    const photoItems = document.querySelectorAll('.photo-item img');
+
+    let currentImageIndex = 0;
+    const images = Array.from(photoItems).map(img => ({
+        src: img.src,
+        alt: img.alt
+    }));
+
+    function openLightbox(index) {
+        currentImageIndex = index;
+        updateLightboxImage();
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    function updateLightboxImage() {
+        lightboxImage.src = images[currentImageIndex].src;
+        lightboxImage.alt = images[currentImageIndex].alt;
+        lightboxCounter.textContent = `${currentImageIndex + 1} / ${images.length}`;
+    }
+
+    function showNextImage() {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        updateLightboxImage();
+    }
+
+    function showPrevImage() {
+        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+        updateLightboxImage();
+    }
+
+    // Event listeners
+    photoItems.forEach((img, index) => {
+        img.addEventListener('click', () => openLightbox(index));
+    });
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxNext.addEventListener('click', showNextImage);
+    lightboxPrev.addEventListener('click', showPrevImage);
+
+    // Close on background click
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+
+        if (e.key === 'Escape') {
+            closeLightbox();
+        } else if (e.key === 'ArrowRight') {
+            showNextImage();
+        } else if (e.key === 'ArrowLeft') {
+            showPrevImage();
+        }
+    });
+</script>

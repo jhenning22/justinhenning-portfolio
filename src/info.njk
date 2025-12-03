@@ -1,0 +1,160 @@
+---
+layout: layouts/base.njk
+title: Justin Henning - Information
+permalink: /info.html
+isMainPage: true
+infoPageStyles: true
+---
+
+<!-- Vertical Side Navigation -->
+<nav class="side-nav">
+    <a href="/work.html#all" class="side-nav-btn">ALL</a>
+    <a href="/work.html#film" class="side-nav-btn">FILM</a>
+    <a href="/work.html#commercial" class="side-nav-btn">COMMERCIAL</a>
+    <a href="/work.html#automotive" class="side-nav-btn">AUTOMOTIVE</a>
+</nav>
+
+<!-- Right Side Navigation for Photography -->
+<nav class="side-nav-right">
+    <a href="/photography.html" class="side-nav-btn">PHOTOGRAPHY</a>
+</nav>
+
+<!-- Main Content -->
+<main id="mainContent">
+    <div class="info-content">
+        <!-- Biography Section with Photo -->
+        <div class="info-row">
+            <div class="info-label">
+                <h2>Biography</h2>
+            </div>
+            <div class="info-detail">
+                <div class="info-image">
+                    <img src="/media/info-bts.webp" alt="Justin Henning on set">
+                </div>
+                <p>Justin T Henning is an accomplished ICG Local 600 Cinematographer based in Brooklyn, NY. He specializes in feature films and commercial projects, bringing a distinct visual sensibility and emotional depth to every production.</p>
+
+                <p>His most recent works include Handled with Care, directed by Matthew James Thompson and starring Justin Min, as well as Ana Paula, directed by Leigh Marling and filmed on location in Durango, Mexico. Both feature films are set for release in 2026.</p>
+
+                <p>Justin's earlier feature, Your Lucky Day, directed by Dan Brown and starring the late Angus Cloud of HBO's Euphoria, garnered widespread attention after successful theatrical screenings across the United States. The film went on to stream on Netflix, where it remained among the platform's Top 10 most-watched titles for two consecutive weeks.</p>
+
+                <p>His debut feature, American Outlaws, directed by Sean McEwen, premiered at the 2023 Santa Barbara International Film Festival.</p>
+
+                <p>In 2022, Justin earned a Best Cinematography nomination at the prestigious Camerimage Festival for his work on Ed Sheeran's music video "South of the Border," directed by Jason Koenig.</p>
+
+                <p>Throughout his career, Justin has also collaborated on numerous high-profile commercial campaigns. His clients include Capital One, Elijah Craig, Sonos, Chevrolet, Ford, Jeep, Lamborghini, Audi, Alfa Romeo, Ram, Bentley, Adidas, Marriott, Nikon, Ralph Lauren, and Miller.</p>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="info-row">
+            <div class="info-label">
+                <h2>Contact</h2>
+            </div>
+            <div class="info-detail">
+                <div class="contact-columns">
+                    <div class="contact-column">
+                        <div class="contact-item">
+                            <p class="contact-title">US / WPA USA</p>
+                            <p>Phone: <a href="tel:+13106599965">(310) 659-9965</a></p>
+                            <p>Commercials: Steven - <a href="mailto:steven@wp-a.com">steven@wp-a.com</a></p>
+                            <p>Commercials: Kristen Billings - <a href="mailto:kristen@wp-a.com">kristen@wp-a.com</a></p>
+                            <p>Film & TV: Louiza Vick - <a href="mailto:louiza@wp-a.com">louiza@wp-a.com</a></p>
+                        </div>
+
+                        <div class="contact-item">
+                            <p class="contact-title">UK / WPA London</p>
+                            <p>Phone: <a href="tel:+442072879564">+44 (0)207 287 9564</a></p>
+                            <p>Mobile: <a href="tel:+447768617531">+44 (0)776 86 17531</a></p>
+                            <p>Commercials: Barnaby Laws - <a href="mailto:barnaby@wp-a.co.uk">barnaby@wp-a.co.uk</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-column">
+                        <div class="contact-item">
+                            <p class="contact-title">Mexico & Latam / 9AM</p>
+                            <p>Phone: <a href="tel:+525627734765">+52 (562) 773-4765</a></p>
+                            <p>Commercials: Rodrigo Gavaldon - <a href="mailto:rodrigo@9am.mx">rodrigo@9am.mx</a></p>
+                        </div>
+
+                        <div class="contact-item">
+                            <p class="contact-title">Personal Contact</p>
+                            <p>Email: <a href="mailto:henning.justin@gmail.com">henning.justin@gmail.com</a></p>
+                            <p>Instagram: <a href="https://instagram.com/justinthenning" target="_blank">@justinthenning</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Row -->
+        <div class="info-footer">
+            <div class="footer-links">
+                <a href="https://www.instagram.com/justinthenning/" target="_blank" class="social-btn">INSTAGRAM</a>
+                <a href="/archive.html" class="social-btn">ARCHIVE</a>
+            </div>
+            <div class="footer-credit">
+                <p>Typeface: Tonka by Céline Hurka and Huw Williams</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    // Mobile Menu Functionality
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (hamburgerBtn && mobileMenu) {
+        hamburgerBtn.addEventListener('click', () => {
+            const isOpening = !mobileMenu.classList.contains('active');
+            mobileMenu.classList.toggle('active');
+            hamburgerBtn.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+
+            if (isOpening) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (mobileMenu.classList.contains('active') &&
+                !mobileMenu.contains(e.target) &&
+                !hamburgerBtn.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+                hamburgerBtn.classList.remove('active');
+                document.body.classList.remove('menu-open');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    }
+
+    // Mobile header hide/show on scroll
+    let lastScrollTop = 0;
+    let scrollThreshold = 10;
+
+    window.addEventListener('scroll', () => {
+        if (window.innerWidth > 768) return;
+
+        const header = document.querySelector('header');
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (currentScroll <= 0) {
+            header.classList.remove('header-hidden');
+            return;
+        }
+
+        if (Math.abs(currentScroll - lastScrollTop) < scrollThreshold) {
+            return;
+        }
+
+        if (currentScroll > lastScrollTop) {
+            header.classList.add('header-hidden');
+        } else {
+            header.classList.remove('header-hidden');
+        }
+
+        lastScrollTop = currentScroll;
+    }, { passive: true });
+</script>

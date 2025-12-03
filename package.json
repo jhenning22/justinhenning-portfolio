@@ -1,0 +1,19 @@
+{
+  "name": "website-updated",
+  "version": "1.0.0",
+  "description": "A minimalistic portfolio website inspired by ligthelm.work, designed to showcase cinematography work with an elegant dark theme and smooth interactions.",
+  "main": "script.js",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve",
+    "clean": "rm -rf _site",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["portfolio", "cinematography", "static-site"],
+  "author": "Justin Henning",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2"
+  }
+}

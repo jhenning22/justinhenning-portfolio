@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archive - Justin Henning</title>
+    <link rel="stylesheet" href="style.css?v=4">
+    <style>
+        /* Archive Page Styles */
+        body.archive-page {
+            padding-top: 0;
+            margin-top: 0;
+        }
+
+        body.archive-page main {
+            margin-top: 0;
+        }
+
+        .archive-container {
+            max-width: 1920px;
+            margin: 0 auto;
+            padding: 120px 32px 80px;
+        }
+
+        .archive-page-title {
+            font-weight: 400;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .archive-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px 24px;
+        }
+
+        .archive-video-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .archive-video-title {
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .archive-video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            background-color: #000;
+            overflow: hidden;
+        }
+
+        .archive-video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .archive-video-director {
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-top: 12px;
+            opacity: 0.7;
+        }
+
+        @media screen and (max-width: 768px) {
+            .archive-container {
+                padding: 100px 20px 60px;
+            }
+
+            .archive-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+        }
+    </style>
+</head>
+<body class="at-grid archive-page">
+    <!-- Vertical Side Navigation -->
+    <nav class="side-nav main-side-nav">
+        <a href="work.html" class="side-nav-btn">RETURN TO MAIN PAGE</a>
+    </nav>
+
+    <!-- Right Side Navigation -->
+    <nav class="side-nav-right">
+        <a href="photography.html" class="side-nav-btn">PHOTOGRAPHY</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="main-header">
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="header-left">
+            <a href="work.html" class="nav-link">WORK</a>
+        </div>
+        <div class="header-center">
+            <a href="index.html" class="header-title-link">
+                <h1>JUSTIN HENNING CINEMATOGRAPHER</h1>
+            </a>
+        </div>
+        <div class="header-right">
+            <a href="work.html#info" class="nav-link">INFORMATION</a>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <nav class="mobile-menu-nav">
+            <div class="mobile-menu-section mobile-menu-pages">
+                <a href="work.html" class="mobile-menu-btn">WORK</a>
+                <a href="work.html#info" class="mobile-menu-btn">INFORMATION</a>
+                <a href="photography.html" class="mobile-menu-btn">PHOTOGRAPHY</a>
+                <a href="archive.html" class="mobile-menu-btn">ARCHIVE</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <div class="archive-container">
+            <h1 class="archive-page-title">ARCHIVE</h1>
+
+            <div class="archive-grid">
+            <!-- Bentley - Continental GTS -->
+            <div class="archive-video-item">
+                <h2 class="archive-video-title">BENTLEY - CONTINENTAL GTS</h2>
+                <div class="archive-video-wrapper">
+                    <iframe src="https://player.vimeo.com/video/805761043?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Bentley - Continental GTS"></iframe>
+                </div>
+                <p class="archive-video-director">Director: [Director Name]</p>
+            </div>
+
+            <!-- Miller Genuine Draft - Jeff Staple -->
+            <div class="archive-video-item">
+                <h2 class="archive-video-title">MILLER GENUINE DRAFT - JEFF STAPLE</h2>
+                <div class="archive-video-wrapper">
+                    <iframe src="https://player.vimeo.com/video/405148244?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Miller Genuine Draft - Jeff Staple"></iframe>
+                </div>
+                <p class="archive-video-director">Director: [Director Name]</p>
+            </div>
+
+            <!-- Toyota - CHR -->
+            <div class="archive-video-item">
+                <h2 class="archive-video-title">TOYOTA - CHR</h2>
+                <div class="archive-video-wrapper">
+                    <iframe src="https://player.vimeo.com/video/394801461?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Toyota - CHR"></iframe>
+                </div>
+                <p class="archive-video-director">Director: [Director Name]</p>
+            </div>
+
+            <!-- Ichnusa - Sardinian For Beer -->
+            <div class="archive-video-item">
+                <h2 class="archive-video-title">ICHNUSA - SARDINIAN FOR BEER</h2>
+                <div class="archive-video-wrapper">
+                    <iframe src="https://player.vimeo.com/video/222332910?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Ichnusa - Sardinian For Beer"></iframe>
+                </div>
+                <p class="archive-video-director">Director: [Director Name]</p>
+            </div>
+
+            <!-- Infiniti - Beyond The Numbers -->
+            <div class="archive-video-item">
+                <h2 class="archive-video-title">INFINITI - BEYOND THE NUMBERS</h2>
+                <div class="archive-video-wrapper">
+                    <iframe src="https://player.vimeo.com/video/245654221?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Infiniti - Beyond The Numbers"></iframe>
+                </div>
+                <p class="archive-video-director">Director: [Director Name]</p>
+            </div>
+
+            <!-- Jeep - Unmap Your Life -->
+            <div class="archive-video-item">
+                <h2 class="archive-video-title">JEEP - UNMAP YOUR LIFE</h2>
+                <div class="archive-video-wrapper">
+                    <iframe src="https://player.vimeo.com/video/202056798?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Jeep - Unmap Your Life"></iframe>
+                </div>
+                <p class="archive-video-director">Director: [Director Name]</p>
+            </div>
+
+            <!-- USPS -->
+            <div class="archive-video-item">
+                <h2 class="archive-video-title">USPS</h2>
+                <div class="archive-video-wrapper">
+                    <iframe src="https://player.vimeo.com/video/917245566?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="USPS"></iframe>
+                </div>
+                <p class="archive-video-director">Director: [Director Name]</p>
+            </div>
+
+            <!-- Argentina Tourism -->
+            <div class="archive-video-item">
+                <h2 class="archive-video-title">ARGENTINA TOURISM</h2>
+                <div class="archive-video-wrapper">
+                    <iframe src="https://player.vimeo.com/video/201915464?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Argentina Tourism"></iframe>
+                </div>
+                <p class="archive-video-director">Director: [Director Name]</p>
+            </div>
+
+            <!-- Iron and Wine - Call it Dreaming -->
+            <div class="archive-video-item">
+                <h2 class="archive-video-title">IRON AND WINE - CALL IT DREAMING</h2>
+                <div class="archive-video-wrapper">
+                    <iframe src="https://player.vimeo.com/video/231083667?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Iron and Wine - Call it Dreaming"></iframe>
+                </div>
+                <p class="archive-video-director">Director: [Director Name]</p>
+            </div>
+
+            <!-- Shabazz Palaces - Deesse Du Sang -->
+            <div class="archive-video-item">
+                <h2 class="archive-video-title">SHABAZZ PALACES - DEESSE DU SANG</h2>
+                <div class="archive-video-wrapper">
+                    <iframe src="https://player.vimeo.com/video/300999560?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Shabazz Palaces - Deesse Du Sang"></iframe>
+                </div>
+                <p class="archive-video-director">Director: [Director Name]</p>
+            </div>
+
+            <!-- Century 21 - Not An App -->
+            <div class="archive-video-item">
+                <h2 class="archive-video-title">CENTURY 21 - NOT AN APP</h2>
+                <div class="archive-video-wrapper">
+                    <iframe src="https://player.vimeo.com/video/203398466?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Century 21 - Not An App"></iframe>
+                </div>
+                <p class="archive-video-director">Director: [Director Name]</p>
+            </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Mobile menu functionality
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        if (hamburgerBtn && mobileMenu) {
+            hamburgerBtn.addEventListener('click', () => {
+                hamburgerBtn.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                document.body.classList.toggle('menu-open');
+            });
+
+            // Close menu when clicking a link
+            document.querySelectorAll('.mobile-menu-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    hamburgerBtn.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.classList.remove('menu-open');
+                });
+            });
+        }
+    </script>
+</body>
+</html>

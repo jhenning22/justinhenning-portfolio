@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Justin Henning - Information</title>
+
+    <!-- Preload fonts to prevent FOUT -->
+    
+    <link rel="preload" href="/fonts/Tonka-MediumCondensed.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/Tonka-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    
+
+    
+    <link rel="stylesheet" href="/style.css?v=21">
+    
+
+    
+
+    
+
+    <style>
+        /* Font: Tonka Medium Condensed - only for site title */
+        @font-face {
+            font-family: 'Tonka';
+            src: url('/fonts/Tonka-MediumCondensed.woff2') format('woff2'),
+                 url('/fonts/Tonka-MediumCondensed.woff') format('woff');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* Fix header alignment for two-line title */
+        header {
+            align-items: flex-start !important;
+            padding-top: 24px !important;
+        }
+
+        .header-left,
+        .header-right {
+            padding-top: 0 !important;
+        }
+
+        /* Site title styling */
+        .header-center h1 {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 4px !important;
+            line-height: 1 !important;
+        }
+
+        .header-center h1 .name {
+            font-size: 21.5px !important;
+            font-weight: 500 !important;
+            letter-spacing: 0.05em !important;
+        }
+
+        .header-center h1 .title {
+            font-size: 12px !important;
+            font-weight: 400 !important;
+            letter-spacing: 0.135em !important;
+        }
+
+        /* Mobile: Hide full text, show short text */
+        .info-short {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            /* Header mobile adjustments */
+            .info-full {
+                display: none;
+            }
+
+            .info-short {
+                display: inline;
+            }
+
+            header {
+                padding: 16px 16px 6px 16px !important;
+                transition: transform 0.3s ease-in-out;
+            }
+
+            header.header-hidden {
+                transform: translateY(-100%);
+            }
+
+            .header-center {
+                flex: 1 !important;
+                text-align: center !important;
+                padding-left: 50px !important;
+                padding-right: 50px !important;
+            }
+
+            .header-center h1 {
+                text-align: center !important;
+            }
+        }
+
+        
+
+        
+        /* Info page specific styles - BLACK text for header and navigation */
+        body {
+            background: #fff !important;
+            color: #000 !important;
+        }
+
+        /* Header background */
+        .main-header {
+            background: #fff !important;
+        }
+
+        /* Header - black text on white background */
+        .main-header,
+        .main-header *,
+        .header-left,
+        .header-right,
+        .header-center,
+        .nav-link,
+        .header-title-link,
+        .header-title-link *,
+        .header-center h1,
+        .header-center h1 .name,
+        .header-center h1 .title {
+            color: #000 !important;
+        }
+
+        /* Side navigation - black text */
+        .side-nav,
+        .side-nav-right,
+        .side-nav-btn {
+            color: #000 !important;
+        }
+
+        /* Hamburger menu - black */
+        .hamburger-btn span {
+            background: #000 !important;
+        }
+
+        /* Mobile menu - black text */
+        .mobile-menu,
+        .mobile-menu-btn,
+        .mobile-menu-nav * {
+            color: #000 !important;
+        }
+        
+
+        
+
+        
+
+        
+
+        
+    </style>
+
+    
+</head>
+<body class="at-grid">
+    
+
+    <!-- Header -->
+<header class="main-header">
+    
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    
+    <div class="header-left">
+        
+        <a href="/work.html" class="nav-link" id="workLink">WORK</a>
+        
+    </div>
+    <div class="header-center">
+        <a href="/" class="header-title-link" id="headerTitleLink">
+            <h1>
+                <span class="name">JUSTIN HENNING</span>
+                <span class="title">CINEMATOGRAPHER</span>
+            </h1>
+        </a>
+    </div>
+    <div class="header-right">
+        <a href="/info.html" class="nav-link active" id="infoLink">
+            <span class="info-full">INFORMATION</span>
+            <span class="info-short">INFO</span>
+        </a>
+    </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-menu-nav">
+        
+        <div class="mobile-menu-section mobile-menu-filters">
+            <a href="/work.html#all" class="mobile-menu-btn">ALL</a>
+            <a href="/work.html#film" class="mobile-menu-btn">FILM</a>
+            <a href="/work.html#commercial" class="mobile-menu-btn">COMMERCIAL</a>
+            <a href="/work.html#automotive" class="mobile-menu-btn">AUTOMOTIVE</a>
+        </div>
+        
+        <div class="mobile-menu-section mobile-menu-pages">
+            <a href="/info.html" class="mobile-menu-btn" id="mobileInfoLink">INFORMATION</a>
+            <a href="/photography.html" class="mobile-menu-btn">PHOTOGRAPHY</a>
+        </div>
+    </nav>
+</div>
+
+
+    
+<!-- Vertical Side Navigation -->
+<nav class="side-nav">
+    <a href="/work.html#all" class="side-nav-btn">ALL</a>
+    <a href="/work.html#film" class="side-nav-btn">FILM</a>
+    <a href="/work.html#commercial" class="side-nav-btn">COMMERCIAL</a>
+    <a href="/work.html#automotive" class="side-nav-btn">AUTOMOTIVE</a>
+</nav>
+
+<!-- Right Side Navigation for Photography -->
+<nav class="side-nav-right">
+    <a href="/photography.html" class="side-nav-btn">PHOTOGRAPHY</a>
+</nav>
+
+<!-- Main Content -->
+<main id="mainContent">
+    <div class="info-content">
+        <!-- Biography Section with Photo -->
+        <div class="info-row">
+            <div class="info-label">
+                <h2>Biography</h2>
+            </div>
+            <div class="info-detail">
+                <div class="info-image">
+                    <img src="/media/info-bts.webp" alt="Justin Henning on set">
+                </div>
+                <p>Justin T Henning is an accomplished ICG Local 600 Cinematographer based in Brooklyn, NY. He specializes in feature films and commercial projects, bringing a distinct visual sensibility and emotional depth to every production.</p>
+
+                <p>His most recent works include Handled with Care, directed by Matthew James Thompson and starring Justin Min, as well as Ana Paula, directed by Leigh Marling and filmed on location in Durango, Mexico. Both feature films are set for release in 2026.</p>
+
+                <p>Justin's earlier feature, Your Lucky Day, directed by Dan Brown and starring the late Angus Cloud of HBO's Euphoria, garnered widespread attention after successful theatrical screenings across the United States. The film went on to stream on Netflix, where it remained among the platform's Top 10 most-watched titles for two consecutive weeks.</p>
+
+                <p>His debut feature, American Outlaws, directed by Sean McEwen, premiered at the 2023 Santa Barbara International Film Festival.</p>
+
+                <p>In 2022, Justin earned a Best Cinematography nomination at the prestigious Camerimage Festival for his work on Ed Sheeran's music video "South of the Border," directed by Jason Koenig.</p>
+
+                <p>Throughout his career, Justin has also collaborated on numerous high-profile commercial campaigns. His clients include Capital One, Elijah Craig, Sonos, Chevrolet, Ford, Jeep, Lamborghini, Audi, Alfa Romeo, Ram, Bentley, Adidas, Marriott, Nikon, Ralph Lauren, and Miller.</p>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="info-row">
+            <div class="info-label">
+                <h2>Contact</h2>
+            </div>
+            <div class="info-detail">
+                <div class="contact-columns">
+                    <div class="contact-column">
+                        <div class="contact-item">
+                            <p class="contact-title">US / WPA USA</p>
+                            <p>Phone: <a href="tel:+13106599965">(310) 659-9965</a></p>
+                            <p>Commercials: Steven - <a href="mailto:steven@wp-a.com">steven@wp-a.com</a></p>
+                            <p>Commercials: Kristen Billings - <a href="mailto:kristen@wp-a.com">kristen@wp-a.com</a></p>
+                            <p>Film & TV: Louiza Vick - <a href="mailto:louiza@wp-a.com">louiza@wp-a.com</a></p>
+                        </div>
+
+                        <div class="contact-item">
+                            <p class="contact-title">UK / WPA London</p>
+                            <p>Phone: <a href="tel:+442072879564">+44 (0)207 287 9564</a></p>
+                            <p>Mobile: <a href="tel:+447768617531">+44 (0)776 86 17531</a></p>
+                            <p>Commercials: Barnaby Laws - <a href="mailto:barnaby@wp-a.co.uk">barnaby@wp-a.co.uk</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-column">
+                        <div class="contact-item">
+                            <p class="contact-title">Mexico & Latam / 9AM</p>
+                            <p>Phone: <a href="tel:+525627734765">+52 (562) 773-4765</a></p>
+                            <p>Commercials: Rodrigo Gavaldon - <a href="mailto:rodrigo@9am.mx">rodrigo@9am.mx</a></p>
+                        </div>
+
+                        <div class="contact-item">
+                            <p class="contact-title">Personal Contact</p>
+                            <p>Email: <a href="mailto:henning.justin@gmail.com">henning.justin@gmail.com</a></p>
+                            <p>Instagram: <a href="https://instagram.com/justinthenning" target="_blank">@justinthenning</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Row -->
+        <div class="info-footer">
+            <div class="footer-links">
+                <a href="https://www.instagram.com/justinthenning/" target="_blank" class="social-btn">INSTAGRAM</a>
+                <a href="/archive.html" class="social-btn">ARCHIVE</a>
+            </div>
+            <div class="footer-credit">
+                <p>Typeface: Tonka by Céline Hurka and Huw Williams</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    // Mobile Menu Functionality
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (hamburgerBtn && mobileMenu) {
+        hamburgerBtn.addEventListener('click', () => {
+            const isOpening = !mobileMenu.classList.contains('active');
+            mobileMenu.classList.toggle('active');
+            hamburgerBtn.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+
+            if (isOpening) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (mobileMenu.classList.contains('active') &&
+                !mobileMenu.contains(e.target) &&
+                !hamburgerBtn.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+                hamburgerBtn.classList.remove('active');
+                document.body.classList.remove('menu-open');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    }
+
+    // Mobile header hide/show on scroll
+    let lastScrollTop = 0;
+    let scrollThreshold = 10;
+
+    window.addEventListener('scroll', () => {
+        if (window.innerWidth > 768) return;
+
+        const header = document.querySelector('header');
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (currentScroll <= 0) {
+            header.classList.remove('header-hidden');
+            return;
+        }
+
+        if (Math.abs(currentScroll - lastScrollTop) < scrollThreshold) {
+            return;
+        }
+
+        if (currentScroll > lastScrollTop) {
+            header.classList.add('header-hidden');
+        } else {
+            header.classList.remove('header-hidden');
+        }
+
+        lastScrollTop = currentScroll;
+    }, { passive: true });
+</script>
+
+
+    
+
+    
+</body>
+</html>

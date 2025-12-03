@@ -1,0 +1,58 @@
+<!-- Header -->
+<header class="main-header{% if isLandingPage %} landing-page-header{% endif %}">
+    {% if not hideHamburger and not isLandingPage %}
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    {% endif %}
+    <div class="header-left">
+        {% if isMainPage %}
+        <a href="/work.html" class="nav-link{% if page.url == '/work.html' %} active{% endif %}" id="workLink">WORK</a>
+        {% elif isProjectPage %}
+        <a href="../../work.html" class="nav-link" id="workLink">WORK</a>
+        {% else %}
+        <a href="../work.html" class="nav-link" id="workLink">WORK</a>
+        {% endif %}
+    </div>
+    <div class="header-center">
+        <a href="{% if isProjectPage %}../../{% elif isMainPage %}/{% else %}../{% endif %}" class="header-title-link" id="headerTitleLink">
+            <h1>
+                <span class="name">JUSTIN HENNING</span>
+                <span class="title">CINEMATOGRAPHER</span>
+            </h1>
+        </a>
+    </div>
+    <div class="header-right">
+        <a href="{% if isProjectPage %}../../info.html{% elif isMainPage %}/info.html{% else %}../info.html{% endif %}" class="nav-link{% if page.url == '/info.html' %} active{% endif %}" id="infoLink">
+            <span class="info-full">INFORMATION</span>
+            <span class="info-short">INFO</span>
+        </a>
+    </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-menu-nav">
+        {% if hasSideNav %}
+        <div class="mobile-menu-section mobile-menu-filters">
+            <a href="#all" class="mobile-menu-btn" data-filter="all">ALL</a>
+            <a href="#film" class="mobile-menu-btn" data-filter="film">FILM</a>
+            <a href="#commercial" class="mobile-menu-btn" data-filter="commercial">COMMERCIAL</a>
+            <a href="#automotive" class="mobile-menu-btn" data-filter="automotive">AUTOMOTIVE</a>
+        </div>
+        {% else %}
+        <div class="mobile-menu-section mobile-menu-filters">
+            <a href="{% if isProjectPage %}../../work.html#all{% elif isMainPage %}/work.html#all{% else %}../work.html#all{% endif %}" class="mobile-menu-btn">ALL</a>
+            <a href="{% if isProjectPage %}../../work.html#film{% elif isMainPage %}/work.html#film{% else %}../work.html#film{% endif %}" class="mobile-menu-btn">FILM</a>
+            <a href="{% if isProjectPage %}../../work.html#commercial{% elif isMainPage %}/work.html#commercial{% else %}../work.html#commercial{% endif %}" class="mobile-menu-btn">COMMERCIAL</a>
+            <a href="{% if isProjectPage %}../../work.html#automotive{% elif isMainPage %}/work.html#automotive{% else %}../work.html#automotive{% endif %}" class="mobile-menu-btn">AUTOMOTIVE</a>
+        </div>
+        {% endif %}
+        <div class="mobile-menu-section mobile-menu-pages">
+            <a href="{% if isProjectPage %}../../info.html{% elif isMainPage %}/info.html{% else %}../info.html{% endif %}" class="mobile-menu-btn" id="mobileInfoLink">INFORMATION</a>
+            <a href="{% if isProjectPage %}../../photography.html{% elif isMainPage %}/photography.html{% else %}../photography.html{% endif %}" class="mobile-menu-btn">PHOTOGRAPHY</a>
+        </div>
+    </nav>
+</div>
