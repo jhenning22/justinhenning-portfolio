@@ -55,6 +55,34 @@ hasVimeoPlayer: true
         padding: 0;
         left: 0;
         background: #000;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    /* Poster backgrounds for each section to prevent black flash */
+    #section-0 {
+        background-image: url('/media/posters/your-lucky-day.jpg');
+    }
+
+    #section-1 {
+        background-image: url('/media/posters/woodford-reserve.jpg');
+    }
+
+    #section-2 {
+        background-image: url('/media/posters/kia.jpg');
+    }
+
+    #section-3 {
+        background-image: url('/media/posters/rbc.jpg');
+    }
+
+    #section-4 {
+        background-image: url('/media/posters/kn.jpg');
+    }
+
+    #section-5 {
+        background-image: url('/media/posters/ram.jpg');
     }
 
     /* Remove all hover effects - override global styles */
@@ -618,7 +646,7 @@ hasVimeoPlayer: true
                 {% if project.slug == slug %}
                 <!-- {{ project.title }} -->
                 <section class="fullscreen-section" data-category="{{ project.category }}" id="section-{{ sectionIndex }}" data-modal-video="{{ project.vimeoId }}" style="cursor: pointer;">
-                    <video class="fullscreen-video-bg" muted loop playsinline preload="none" poster="{{ project.thumbnail }}" data-src="{{ project.preview }}?v=2">
+                    <video class="fullscreen-video-bg" muted loop playsinline preload="{% if sectionIndex == 0 %}metadata{% else %}none{% endif %}" poster="{{ project.thumbnail }}" data-src="{{ project.preview }}?v=2">
                     </video>
                     <div class="play-button">
                         <svg viewBox="0 0 24 24">
@@ -740,6 +768,13 @@ hasVimeoPlayer: true
     // Simple modal with browser back button support
     document.addEventListener('DOMContentLoaded', function() {
         setViewportHeight();
+
+        // Preload first video immediately for instant playback
+        const firstVideo = document.querySelector('.fullscreen-video-bg');
+        if (firstVideo && firstVideo.dataset.src && !firstVideo.src) {
+            firstVideo.src = firstVideo.dataset.src;
+            firstVideo.load();
+        }
 
         // CLEAN UP: If page loaded with modal state, clear it
         if (window.location.search.includes('modal=')) {
@@ -932,6 +967,24 @@ hasVimeoPlayer: true
         const totalSections = sections.length;
         const scrollButton = document.querySelector('.scroll-button-container');
 
+        // Function to preload adjacent videos (current + previous + next)
+        function preloadAdjacentVideos(currentIndex) {
+            const indicesToLoad = [
+                currentIndex - 1,
+                currentIndex,
+                currentIndex + 1
+            ].filter(i => i >= 0 && i < totalSections);
+
+            indicesToLoad.forEach(index => {
+                const section = sections[index];
+                const video = section.querySelector('.fullscreen-video-bg');
+                if (video && video.dataset.src && !video.src) {
+                    video.src = video.dataset.src;
+                    video.load();
+                }
+            });
+        }
+
         // Track current section with Intersection Observer
         const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -940,6 +993,9 @@ hasVimeoPlayer: true
                     const match = sectionId.match(/section-(\d+)/);
                     if (match) {
                         currentSectionIndex = parseInt(match[1]);
+
+                        // Preload adjacent videos when section comes into view
+                        preloadAdjacentVideos(currentSectionIndex);
 
                         if (currentSectionIndex === totalSections - 1) {
                             scrollButton.style.display = 'none';
@@ -986,7 +1042,8 @@ hasVimeoPlayer: true
                 }
             });
         }, {
-            threshold: 0.5
+            threshold: 0.2,        // Start loading when 20% visible (earlier than before)
+            rootMargin: '100px'    // Start loading 100px before entering viewport
         });
 
         videos.forEach(video => {
