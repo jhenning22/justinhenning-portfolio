@@ -15,12 +15,20 @@ workPageStyles: true
         {% for project in projects.projects %}
         {% if project.active %}
         <!-- {{ project.title }} -->
-        <a href="/work/{{ project.slug }}/" class="project-card{% if project.large %} large{% endif %}" data-category="{{ project.category | lower }}" data-project="{{ loop.index0 }}">
+        <a href="/work/{{ project.slug }}/" class="project-card{% if project.large %} large{% endif %}" data-category="{{ project.category | lower }}" data-project="{{ loop.index0 }}"{% if project.galleryImages %} data-gallery="true"{% endif %}>
             <div class="media-container">
                 <div class="project-image" style="background-image: url('{{ project.thumbnail }}')"></div>
+                {% if project.useStaticThumbnail %}
+                <!-- Static thumbnail only, no hover effect -->
+                {% elif project.galleryImages %}
+                <!-- Gallery cycling preview -->
+                <div class="gallery-cycle" data-images='{{ project.galleryImages | dump | safe }}'></div>
+                {% elif project.preview %}
+                <!-- Video preview -->
                 <video class="project-video" muted loop playsinline preload="none">
                     <source data-src="{{ project.preview }}?v=2" type="video/mp4">
                 </video>
+                {% endif %}
             </div>
             <div class="project-info">
                 <div class="project-number"></div>
