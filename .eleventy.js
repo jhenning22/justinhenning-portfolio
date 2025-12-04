@@ -2,6 +2,9 @@ module.exports = function(eleventyConfig) {
   // Copy media files as-is (previews, thumbnails, photography images)
   eleventyConfig.addPassthroughCopy("src/media");
 
+  // Copy root-level media directory (gallery images, etc.)
+  eleventyConfig.addPassthroughCopy("media");
+
   // Copy stylesheets
   eleventyConfig.addPassthroughCopy("src/style.css");
   eleventyConfig.addPassthroughCopy("src/photography-style.css");

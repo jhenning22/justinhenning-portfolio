@@ -31,8 +31,33 @@ hideHamburger: false
         {% endif %}
     </div>
 
-    <!-- Video Player -->
-    {% if project.vimeoId %}
+    <!-- Image Gallery Carousel (for gallery projects) -->
+    {% if project.galleryImages %}
+    <div class="gallery-wrapper">
+        <div class="gallery-main">
+            <button class="gallery-arrow gallery-arrow-left" id="galleryPrev" aria-label="Previous image">‹</button>
+            <div class="gallery-image-container" id="galleryImageContainer">
+                <img src="{{ project.galleryImages[0] }}" alt="{{ project.title }}" class="gallery-main-image" id="galleryMainImage">
+            </div>
+            <button class="gallery-arrow gallery-arrow-right" id="galleryNext" aria-label="Next image">›</button>
+        </div>
+        <div class="gallery-thumbnails" id="galleryThumbnails">
+            {% for image in project.galleryImages %}
+            <div class="gallery-thumbnail {% if loop.index0 == 0 %}active{% endif %}" data-index="{{ loop.index0 }}">
+                <img src="{{ image }}" alt="{{ project.title }} - Image {{ loop.index }}">
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Fullscreen Lightbox -->
+    <div class="gallery-lightbox" id="galleryLightbox">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close lightbox">×</button>
+        <button class="gallery-arrow gallery-arrow-left" id="lightboxPrev" aria-label="Previous image">‹</button>
+        <img src="" alt="" class="lightbox-image" id="lightboxImage">
+        <button class="gallery-arrow gallery-arrow-right" id="lightboxNext" aria-label="Next image">›</button>
+    </div>
+    {% elif project.vimeoId %}
+    <!-- Video Player (for video projects) -->
     <div class="video-wrapper">
         <iframe
             src="https://player.vimeo.com/video/{{ project.vimeoId }}?autoplay=1&title=0&byline=0&portrait=0"
@@ -88,6 +113,21 @@ hideHamburger: false
                 <img src="{{ poster }}" alt="{{ project.title }} Poster">
             </div>
             {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Trailer Section (conditional) -->
+    {% if project.trailer %}
+    <div class="project-trailer">
+        <h2>Trailer</h2>
+        <div class="video-wrapper">
+            <iframe
+                src="https://player.vimeo.com/video/{{ project.trailer.vimeoId }}?title=0&byline=0&portrait=0"
+                frameborder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowfullscreen>
+            </iframe>
         </div>
     </div>
     {% endif %}
@@ -307,4 +347,154 @@ hideHamburger: false
             window.location.href = '../work.html' + (activeFilter !== 'all' ? `#${activeFilter}` : '');
         }
     });
+
+    // Image Gallery Carousel Functionality
+    {% if project.galleryImages %}
+    (function() {
+        const images = {{ project.galleryImages | dump | safe }};
+        let currentIndex = 0;
+
+        const mainImage = document.getElementById('galleryMainImage');
+        const imageContainer = document.getElementById('galleryImageContainer');
+        const thumbnails = document.querySelectorAll('.gallery-thumbnail');
+        const prevBtn = document.getElementById('galleryPrev');
+        const nextBtn = document.getElementById('galleryNext');
+
+        // Lightbox elements
+        const lightbox = document.getElementById('galleryLightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+
+        function updateGallery(index) {
+            currentIndex = index;
+            mainImage.src = images[currentIndex];
+
+            // Update active thumbnail
+            thumbnails.forEach((thumb, i) => {
+                thumb.classList.toggle('active', i === currentIndex);
+            });
+
+            // Scroll thumbnail into view
+            const activeThumbnail = thumbnails[currentIndex];
+            if (activeThumbnail) {
+                activeThumbnail.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+        }
+
+        function navigateGallery(direction) {
+            const newIndex = (currentIndex + direction + images.length) % images.length;
+            updateGallery(newIndex);
+        }
+
+        // Navigation buttons
+        prevBtn.addEventListener('click', () => navigateGallery(-1));
+        nextBtn.addEventListener('click', () => navigateGallery(1));
+
+        // Thumbnail clicks
+        thumbnails.forEach((thumb, index) => {
+            thumb.addEventListener('click', () => updateGallery(index));
+        });
+
+        // Click main image to open lightbox
+        imageContainer.addEventListener('click', () => {
+            lightboxImage.src = images[currentIndex];
+            lightboxImage.alt = mainImage.alt;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Lightbox navigation
+        function updateLightbox(index) {
+            currentIndex = index;
+            lightboxImage.src = images[currentIndex];
+
+            // Update main gallery thumbnail too
+            thumbnails.forEach((thumb, i) => {
+                thumb.classList.toggle('active', i === currentIndex);
+            });
+        }
+
+        function navigateLightbox(direction) {
+            const newIndex = (currentIndex + direction + images.length) % images.length;
+            updateLightbox(newIndex);
+        }
+
+        lightboxPrev.addEventListener('click', () => navigateLightbox(-1));
+        lightboxNext.addEventListener('click', () => navigateLightbox(1));
+
+        // Close lightbox
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            mainImage.src = images[currentIndex]; // Sync main image
+        }
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // Keyboard navigation for gallery
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'ArrowLeft') {
+                    navigateLightbox(-1);
+                } else if (e.key === 'ArrowRight') {
+                    navigateLightbox(1);
+                } else if (e.key === 'Escape') {
+                    closeLightbox();
+                }
+            } else {
+                // Only navigate gallery if not in project navigation
+                if (e.key === 'ArrowLeft' && e.target.tagName !== 'INPUT') {
+                    navigateGallery(-1);
+                    e.preventDefault();
+                } else if (e.key === 'ArrowRight' && e.target.tagName !== 'INPUT') {
+                    navigateGallery(1);
+                    e.preventDefault();
+                }
+            }
+        });
+
+        // Touch/swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // Swipe left - next image
+                    if (lightbox.classList.contains('active')) {
+                        navigateLightbox(1);
+                    } else {
+                        navigateGallery(1);
+                    }
+                } else {
+                    // Swipe right - previous image
+                    if (lightbox.classList.contains('active')) {
+                        navigateLightbox(-1);
+                    } else {
+                        navigateGallery(-1);
+                    }
+                }
+            }
+        }
+
+        [imageContainer, lightbox].forEach(element => {
+            element.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            element.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+        });
+    })();
+    {% endif %}
 </script>
