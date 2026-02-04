@@ -157,6 +157,204 @@
 
         
 
+        /* Gallery Carousel Styles */
+        .gallery-wrapper {
+            position: relative;
+            width: 100%;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-main {
+            position: relative;
+            width: 100%;
+            padding-bottom: 41.78%; /* 2.39:1 aspect ratio */
+            background: #000;
+            overflow: hidden;
+        }
+
+        .gallery-image-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .gallery-main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+        }
+
+        .gallery-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            color: #fff;
+            border: none;
+            font-size: 75px !important;
+            width: auto;
+            height: auto;
+            cursor: pointer;
+            z-index: 10;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            line-height: 1 !important;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important;
+            font-weight: 100 !important;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .gallery-arrow:hover {
+            opacity: 0.7;
+        }
+
+        .gallery-arrow-left {
+            left: 0;
+        }
+
+        .gallery-arrow-right {
+            right: 0;
+        }
+
+        .gallery-thumbnails {
+            display: flex;
+            gap: 12px;
+            margin-top: 1rem;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 8px 0;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .gallery-thumbnails::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .gallery-thumbnails::-webkit-scrollbar-track {
+            background: #f0f0f0;
+        }
+
+        .gallery-thumbnails::-webkit-scrollbar-thumb {
+            background: #999;
+            border-radius: 3px;
+        }
+
+        .gallery-thumbnails::-webkit-scrollbar-thumb:hover {
+            background: #666;
+        }
+
+        .gallery-thumbnail {
+            flex-shrink: 0;
+            width: 120px;
+            height: 60px;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+            border: 2px solid transparent;
+            overflow: hidden;
+        }
+
+        .gallery-thumbnail:hover {
+            opacity: 0.8;
+        }
+
+        .gallery-thumbnail.active {
+            opacity: 1;
+            border-color: #000;
+        }
+
+        .gallery-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Lightbox */
+        .gallery-lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-image {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 50px !important;
+            cursor: pointer;
+            z-index: 10001;
+            line-height: 1 !important;
+            padding: 0;
+            width: auto;
+            height: auto;
+            transition: opacity 0.3s ease;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important;
+            font-weight: 200 !important;
+        }
+
+        .lightbox-close:hover {
+            opacity: 0.7;
+        }
+
+        .gallery-lightbox .gallery-arrow {
+            background: none;
+        }
+
+        .gallery-lightbox .gallery-arrow:hover {
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-arrow {
+                font-size: 50px !important;
+                padding: 15px;
+            }
+
+            .gallery-thumbnail {
+                width: 80px;
+                height: 40px;
+            }
+
+            .lightbox-close {
+                font-size: 40px !important;
+                top: 10px;
+                right: 15px;
+            }
+
+            .lightbox-image {
+                max-width: 95%;
+                max-height: 95%;
+            }
+        }
+
         
     </style>
 
@@ -237,64 +435,64 @@
     <!-- Photography Grid -->
     <div class="photography-grid">
         <div class="photo-item">
-            <img src="/media/photography/001.jpg" alt="NYC Portfolio 001" loading="lazy">
+            <picture><source type="image/avif" srcset="/media/optimized/001-640w.avif 640w, /media/optimized/001-1280w.avif 1280w, /media/optimized/001-1920w.avif 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><source type="image/webp" srcset="/media/optimized/001-640w.webp 640w, /media/optimized/001-1280w.webp 1280w, /media/optimized/001-1920w.webp 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><img src="/media/optimized/001-640w.jpeg" alt="New York City street scene with pedestrians and urban architecture" loading="lazy" decoding="async" class="" width="1920" height="1311" srcset="/media/optimized/001-640w.jpeg 640w, /media/optimized/001-1280w.jpeg 1280w, /media/optimized/001-1920w.jpeg 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"></picture>
         </div>
         <div class="photo-item">
-            <img src="/media/photography/002.jpg" alt="NYC Portfolio 002" loading="lazy">
+            <picture><source type="image/avif" srcset="/media/optimized/002-640w.avif 640w, /media/optimized/002-1280w.avif 1280w, /media/optimized/002-1920w.avif 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><source type="image/webp" srcset="/media/optimized/002-640w.webp 640w, /media/optimized/002-1280w.webp 1280w, /media/optimized/002-1920w.webp 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><img src="/media/optimized/002-640w.jpeg" alt="NYC nighttime street photography with city lights and traffic" loading="lazy" decoding="async" class="" width="1920" height="1311" srcset="/media/optimized/002-640w.jpeg 640w, /media/optimized/002-1280w.jpeg 1280w, /media/optimized/002-1920w.jpeg 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"></picture>
         </div>
         <div class="photo-item">
-            <img src="/media/photography/003.jpg" alt="NYC Portfolio 003" loading="lazy">
+            <picture><source type="image/avif" srcset="/media/optimized/003-640w.avif 640w, /media/optimized/003-1280w.avif 1280w, /media/optimized/003-1920w.avif 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><source type="image/webp" srcset="/media/optimized/003-640w.webp 640w, /media/optimized/003-1280w.webp 1280w, /media/optimized/003-1920w.webp 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><img src="/media/optimized/003-640w.jpeg" alt="Urban New York scene capturing street life and movement" loading="lazy" decoding="async" class="" width="1920" height="1311" srcset="/media/optimized/003-640w.jpeg 640w, /media/optimized/003-1280w.jpeg 1280w, /media/optimized/003-1920w.jpeg 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"></picture>
         </div>
         <div class="photo-item">
-            <img src="/media/photography/004.jpg" alt="NYC Portfolio 004" loading="lazy">
+            <picture><source type="image/avif" srcset="/media/optimized/004-640w.avif 640w, /media/optimized/004-1280w.avif 1280w, /media/optimized/004-1920w.avif 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><source type="image/webp" srcset="/media/optimized/004-640w.webp 640w, /media/optimized/004-1280w.webp 1280w, /media/optimized/004-1920w.webp 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><img src="/media/optimized/004-640w.jpeg" alt="Manhattan cityscape with buildings and street activity" loading="lazy" decoding="async" class="" width="1920" height="1311" srcset="/media/optimized/004-640w.jpeg 640w, /media/optimized/004-1280w.jpeg 1280w, /media/optimized/004-1920w.jpeg 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"></picture>
         </div>
         <div class="photo-item">
-            <img src="/media/photography/005.jpg" alt="NYC Portfolio 005" loading="lazy">
+            <picture><source type="image/avif" srcset="/media/optimized/005-640w.avif 640w, /media/optimized/005-1280w.avif 1280w, /media/optimized/005-1920w.avif 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><source type="image/webp" srcset="/media/optimized/005-640w.webp 640w, /media/optimized/005-1280w.webp 1280w, /media/optimized/005-1920w.webp 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><img src="/media/optimized/005-640w.jpeg" alt="New York street photography showcasing urban environment" loading="lazy" decoding="async" class="" width="1920" height="1311" srcset="/media/optimized/005-640w.jpeg 640w, /media/optimized/005-1280w.jpeg 1280w, /media/optimized/005-1920w.jpeg 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"></picture>
         </div>
         <div class="photo-item">
-            <img src="/media/photography/006.jpg" alt="NYC Portfolio 006" loading="lazy">
+            <picture><source type="image/avif" srcset="/media/optimized/006-640w.avif 640w, /media/optimized/006-1280w.avif 1280w, /media/optimized/006-1920w.avif 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><source type="image/webp" srcset="/media/optimized/006-640w.webp 640w, /media/optimized/006-1280w.webp 1280w, /media/optimized/006-1920w.webp 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><img src="/media/optimized/006-640w.jpeg" alt="NYC architectural detail and street scene composition" loading="lazy" decoding="async" class="" width="1920" height="1311" srcset="/media/optimized/006-640w.jpeg 640w, /media/optimized/006-1280w.jpeg 1280w, /media/optimized/006-1920w.jpeg 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"></picture>
         </div>
         <div class="photo-item">
-            <img src="/media/photography/007.jpg" alt="NYC Portfolio 007" loading="lazy">
+            <picture><source type="image/avif" srcset="/media/optimized/007-640w.avif 640w, /media/optimized/007-1280w.avif 1280w, /media/optimized/007-1920w.avif 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><source type="image/webp" srcset="/media/optimized/007-640w.webp 640w, /media/optimized/007-1280w.webp 1280w, /media/optimized/007-1920w.webp 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><img src="/media/optimized/007-640w.jpeg" alt="Urban photography capturing New York City atmosphere" loading="lazy" decoding="async" class="" width="1920" height="1311" srcset="/media/optimized/007-640w.jpeg 640w, /media/optimized/007-1280w.jpeg 1280w, /media/optimized/007-1920w.jpeg 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"></picture>
         </div>
         <div class="photo-item">
-            <img src="/media/photography/008.jpg" alt="NYC Portfolio 008" loading="lazy">
+            <picture><source type="image/avif" srcset="/media/optimized/008-640w.avif 640w, /media/optimized/008-1280w.avif 1280w, /media/optimized/008-1920w.avif 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><source type="image/webp" srcset="/media/optimized/008-640w.webp 640w, /media/optimized/008-1280w.webp 1280w, /media/optimized/008-1920w.webp 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><img src="/media/optimized/008-640w.jpeg" alt="New York street scene with pedestrians and city elements" loading="lazy" decoding="async" class="" width="1920" height="1311" srcset="/media/optimized/008-640w.jpeg 640w, /media/optimized/008-1280w.jpeg 1280w, /media/optimized/008-1920w.jpeg 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"></picture>
         </div>
         <div class="photo-item">
-            <img src="/media/photography/009.jpg" alt="NYC Portfolio 009" loading="lazy">
+            <picture><source type="image/avif" srcset="/media/optimized/009-640w.avif 640w, /media/optimized/009-1280w.avif 1280w, /media/optimized/009-1920w.avif 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><source type="image/webp" srcset="/media/optimized/009-640w.webp 640w, /media/optimized/009-1280w.webp 1280w, /media/optimized/009-1920w.webp 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><img src="/media/optimized/009-640w.jpeg" alt="NYC urban landscape and street photography" loading="lazy" decoding="async" class="" width="1920" height="1311" srcset="/media/optimized/009-640w.jpeg 640w, /media/optimized/009-1280w.jpeg 1280w, /media/optimized/009-1920w.jpeg 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"></picture>
         </div>
         <div class="photo-item">
-            <img src="/media/photography/010.jpg" alt="NYC Portfolio 010" loading="lazy">
+            <picture><source type="image/avif" srcset="/media/optimized/010-640w.avif 640w, /media/optimized/010-1280w.avif 1280w, /media/optimized/010-1920w.avif 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><source type="image/webp" srcset="/media/optimized/010-640w.webp 640w, /media/optimized/010-1280w.webp 1280w, /media/optimized/010-1920w.webp 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><img src="/media/optimized/010-640w.jpeg" alt="Manhattan street scene with architectural backdrop" loading="lazy" decoding="async" class="" width="1920" height="1311" srcset="/media/optimized/010-640w.jpeg 640w, /media/optimized/010-1280w.jpeg 1280w, /media/optimized/010-1920w.jpeg 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"></picture>
         </div>
         <div class="photo-item">
-            <img src="/media/photography/011.jpg" alt="NYC Portfolio 011" loading="lazy">
+            <picture><source type="image/avif" srcset="/media/optimized/011-640w.avif 640w, /media/optimized/011-1280w.avif 1280w, /media/optimized/011-1920w.avif 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><source type="image/webp" srcset="/media/optimized/011-640w.webp 640w, /media/optimized/011-1280w.webp 1280w, /media/optimized/011-1920w.webp 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><img src="/media/optimized/011-640w.jpeg" alt="New York City street photography capturing urban life" loading="lazy" decoding="async" class="" width="1920" height="1311" srcset="/media/optimized/011-640w.jpeg 640w, /media/optimized/011-1280w.jpeg 1280w, /media/optimized/011-1920w.jpeg 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"></picture>
         </div>
         <div class="photo-item">
-            <img src="/media/photography/012.jpg" alt="NYC Portfolio 012" loading="lazy">
+            <picture><source type="image/avif" srcset="/media/optimized/012-640w.avif 640w, /media/optimized/012-1280w.avif 1280w, /media/optimized/012-1920w.avif 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><source type="image/webp" srcset="/media/optimized/012-640w.webp 640w, /media/optimized/012-1280w.webp 1280w, /media/optimized/012-1920w.webp 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><img src="/media/optimized/012-640w.jpeg" alt="NYC nighttime urban scene with lighting and atmosphere" loading="lazy" decoding="async" class="" width="1920" height="1311" srcset="/media/optimized/012-640w.jpeg 640w, /media/optimized/012-1280w.jpeg 1280w, /media/optimized/012-1920w.jpeg 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"></picture>
         </div>
         <div class="photo-item">
-            <img src="/media/photography/013.jpg" alt="NYC Portfolio 013" loading="lazy">
+            <picture><source type="image/avif" srcset="/media/optimized/013-640w.avif 640w, /media/optimized/013-1280w.avif 1280w, /media/optimized/013-1920w.avif 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><source type="image/webp" srcset="/media/optimized/013-640w.webp 640w, /media/optimized/013-1280w.webp 1280w, /media/optimized/013-1920w.webp 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><img src="/media/optimized/013-640w.jpeg" alt="Urban New York photography with street elements" loading="lazy" decoding="async" class="" width="1920" height="1311" srcset="/media/optimized/013-640w.jpeg 640w, /media/optimized/013-1280w.jpeg 1280w, /media/optimized/013-1920w.jpeg 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"></picture>
         </div>
         <div class="photo-item">
-            <img src="/media/photography/014.jpg" alt="NYC Portfolio 014" loading="lazy">
+            <picture><source type="image/avif" srcset="/media/optimized/014-640w.avif 640w, /media/optimized/014-1280w.avif 1280w, /media/optimized/014-1920w.avif 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><source type="image/webp" srcset="/media/optimized/014-640w.webp 640w, /media/optimized/014-1280w.webp 1280w, /media/optimized/014-1920w.webp 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><img src="/media/optimized/014-640w.jpeg" alt="New York street scene with motion and urban texture" loading="lazy" decoding="async" class="" width="1920" height="1311" srcset="/media/optimized/014-640w.jpeg 640w, /media/optimized/014-1280w.jpeg 1280w, /media/optimized/014-1920w.jpeg 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"></picture>
         </div>
         <div class="photo-item">
-            <img src="/media/photography/015.jpg" alt="NYC Portfolio 015" loading="lazy">
+            <picture><source type="image/avif" srcset="/media/optimized/015-640w.avif 640w, /media/optimized/015-1280w.avif 1280w, /media/optimized/015-1920w.avif 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><source type="image/webp" srcset="/media/optimized/015-640w.webp 640w, /media/optimized/015-1280w.webp 1280w, /media/optimized/015-1920w.webp 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><img src="/media/optimized/015-640w.jpeg" alt="NYC architectural and street photography composition" loading="lazy" decoding="async" class="" width="1920" height="1311" srcset="/media/optimized/015-640w.jpeg 640w, /media/optimized/015-1280w.jpeg 1280w, /media/optimized/015-1920w.jpeg 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"></picture>
         </div>
         <div class="photo-item">
-            <img src="/media/photography/016.jpg" alt="NYC Portfolio 016" loading="lazy">
+            <picture><source type="image/avif" srcset="/media/optimized/016-640w.avif 640w, /media/optimized/016-1280w.avif 1280w, /media/optimized/016-1920w.avif 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><source type="image/webp" srcset="/media/optimized/016-640w.webp 640w, /media/optimized/016-1280w.webp 1280w, /media/optimized/016-1920w.webp 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><img src="/media/optimized/016-640w.jpeg" alt="Manhattan urban scene with city characteristics" loading="lazy" decoding="async" class="" width="1920" height="1311" srcset="/media/optimized/016-640w.jpeg 640w, /media/optimized/016-1280w.jpeg 1280w, /media/optimized/016-1920w.jpeg 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"></picture>
         </div>
         <div class="photo-item">
-            <img src="/media/photography/017.jpg" alt="NYC Portfolio 017" loading="lazy">
+            <picture><source type="image/avif" srcset="/media/optimized/017-640w.avif 640w, /media/optimized/017-1280w.avif 1280w, /media/optimized/017-1920w.avif 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><source type="image/webp" srcset="/media/optimized/017-640w.webp 640w, /media/optimized/017-1280w.webp 1280w, /media/optimized/017-1920w.webp 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><img src="/media/optimized/017-640w.jpeg" alt="New York City street photography with urban details" loading="lazy" decoding="async" class="" width="1920" height="1311" srcset="/media/optimized/017-640w.jpeg 640w, /media/optimized/017-1280w.jpeg 1280w, /media/optimized/017-1920w.jpeg 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"></picture>
         </div>
         <div class="photo-item">
-            <img src="/media/photography/018.jpg" alt="NYC Portfolio 018" loading="lazy">
+            <picture><source type="image/avif" srcset="/media/optimized/018-640w.avif 640w, /media/optimized/018-1280w.avif 1280w, /media/optimized/018-1920w.avif 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><source type="image/webp" srcset="/media/optimized/018-640w.webp 640w, /media/optimized/018-1280w.webp 1280w, /media/optimized/018-1920w.webp 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><img src="/media/optimized/018-640w.jpeg" alt="NYC urban photography capturing city atmosphere" loading="lazy" decoding="async" class="" width="1920" height="1311" srcset="/media/optimized/018-640w.jpeg 640w, /media/optimized/018-1280w.jpeg 1280w, /media/optimized/018-1920w.jpeg 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"></picture>
         </div>
         <div class="photo-item">
-            <img src="/media/photography/019.jpg" alt="NYC Portfolio 019" loading="lazy">
+            <picture><source type="image/avif" srcset="/media/optimized/019-640w.avif 640w, /media/optimized/019-1280w.avif 1280w, /media/optimized/019-1920w.avif 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><source type="image/webp" srcset="/media/optimized/019-640w.webp 640w, /media/optimized/019-1280w.webp 1280w, /media/optimized/019-1920w.webp 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><img src="/media/optimized/019-640w.jpeg" alt="New York street scene with architectural elements" loading="lazy" decoding="async" class="" width="1920" height="1311" srcset="/media/optimized/019-640w.jpeg 640w, /media/optimized/019-1280w.jpeg 1280w, /media/optimized/019-1920w.jpeg 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"></picture>
         </div>
         <div class="photo-item">
-            <img src="/media/photography/020.jpg" alt="NYC Portfolio 020" loading="lazy">
+            <picture><source type="image/avif" srcset="/media/optimized/020-640w.avif 640w, /media/optimized/020-1280w.avif 1280w, /media/optimized/020-1920w.avif 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><source type="image/webp" srcset="/media/optimized/020-640w.webp 640w, /media/optimized/020-1280w.webp 1280w, /media/optimized/020-1920w.webp 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"><img src="/media/optimized/020-640w.jpeg" alt="Manhattan urban photography with city environment" loading="lazy" decoding="async" class="" width="1920" height="1311" srcset="/media/optimized/020-640w.jpeg 640w, /media/optimized/020-1280w.jpeg 1280w, /media/optimized/020-1920w.jpeg 1920w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"></picture>
         </div>
     </div>
 </main>
@@ -380,10 +578,30 @@
     const photoItems = document.querySelectorAll('.photo-item img');
 
     let currentImageIndex = 0;
-    const images = Array.from(photoItems).map(img => ({
-        src: img.src,
-        alt: img.alt
-    }));
+    const images = Array.from(photoItems).map(img => {
+        // Get the highest resolution image available
+        // currentSrc gives us what the browser actually loaded (respects srcset)
+        // If currentSrc isn't available, fall back to parsing srcset for the largest image
+        let highResSrc = img.currentSrc || img.src;
+
+        // If we only got the fallback src, try to extract the largest from srcset
+        if (highResSrc === img.src && img.srcset) {
+            const srcsetEntries = img.srcset.split(',').map(entry => {
+                const [url, width] = entry.trim().split(' ');
+                return { url, width: parseInt(width) || 0 };
+            });
+            // Sort by width descending and take the largest
+            srcsetEntries.sort((a, b) => b.width - a.width);
+            if (srcsetEntries.length > 0) {
+                highResSrc = srcsetEntries[0].url;
+            }
+        }
+
+        return {
+            src: highResSrc,
+            alt: img.alt
+        };
+    });
 
     function openLightbox(index) {
         currentImageIndex = index;
@@ -447,5 +665,11 @@
     
 
     
+
+    <!-- Vercel Web Analytics -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

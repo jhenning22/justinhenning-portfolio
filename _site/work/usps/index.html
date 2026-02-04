@@ -455,6 +455,40 @@
             }
         }
 
+        /* Trailer Section */
+        .project-trailer {
+            max-width: 1920px;
+            margin: 0 auto 4rem;
+            padding: 0;
+            text-align: center;
+        }
+
+        .project-trailer h2 {
+            font-family: 'Tonka', sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .trailer-poster {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .trailer-poster img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .trailer-poster {
+                max-width: 100%;
+            }
+        }
+
         .project-navigation-wrapper {
             max-width: 1920px;
             margin: 0 auto;
@@ -633,6 +667,204 @@
         }
         
 
+        /* Gallery Carousel Styles */
+        .gallery-wrapper {
+            position: relative;
+            width: 100%;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-main {
+            position: relative;
+            width: 100%;
+            padding-bottom: 41.78%; /* 2.39:1 aspect ratio */
+            background: #000;
+            overflow: hidden;
+        }
+
+        .gallery-image-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .gallery-main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+        }
+
+        .gallery-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            color: #fff;
+            border: none;
+            font-size: 75px !important;
+            width: auto;
+            height: auto;
+            cursor: pointer;
+            z-index: 10;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            line-height: 1 !important;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important;
+            font-weight: 100 !important;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .gallery-arrow:hover {
+            opacity: 0.7;
+        }
+
+        .gallery-arrow-left {
+            left: 0;
+        }
+
+        .gallery-arrow-right {
+            right: 0;
+        }
+
+        .gallery-thumbnails {
+            display: flex;
+            gap: 12px;
+            margin-top: 1rem;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 8px 0;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .gallery-thumbnails::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .gallery-thumbnails::-webkit-scrollbar-track {
+            background: #f0f0f0;
+        }
+
+        .gallery-thumbnails::-webkit-scrollbar-thumb {
+            background: #999;
+            border-radius: 3px;
+        }
+
+        .gallery-thumbnails::-webkit-scrollbar-thumb:hover {
+            background: #666;
+        }
+
+        .gallery-thumbnail {
+            flex-shrink: 0;
+            width: 120px;
+            height: 60px;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+            border: 2px solid transparent;
+            overflow: hidden;
+        }
+
+        .gallery-thumbnail:hover {
+            opacity: 0.8;
+        }
+
+        .gallery-thumbnail.active {
+            opacity: 1;
+            border-color: #000;
+        }
+
+        .gallery-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Lightbox */
+        .gallery-lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-image {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 50px !important;
+            cursor: pointer;
+            z-index: 10001;
+            line-height: 1 !important;
+            padding: 0;
+            width: auto;
+            height: auto;
+            transition: opacity 0.3s ease;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important;
+            font-weight: 200 !important;
+        }
+
+        .lightbox-close:hover {
+            opacity: 0.7;
+        }
+
+        .gallery-lightbox .gallery-arrow {
+            background: none;
+        }
+
+        .gallery-lightbox .gallery-arrow:hover {
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-arrow {
+                font-size: 50px !important;
+                padding: 15px;
+            }
+
+            .gallery-thumbnail {
+                width: 80px;
+                height: 40px;
+            }
+
+            .lightbox-close {
+                font-size: 40px !important;
+                top: 10px;
+                right: 15px;
+            }
+
+            .lightbox-image {
+                max-width: 95%;
+                max-height: 95%;
+            }
+        }
+
         
     </style>
 
@@ -712,8 +944,9 @@
         
     </div>
 
-    <!-- Video Player -->
+    <!-- Image Gallery Carousel (for gallery projects) -->
     
+    <!-- Video Player (for video projects) -->
     <div class="video-wrapper">
         <iframe
             src="https://player.vimeo.com/video/917245566?autoplay=1&title=0&byline=0&portrait=0"
@@ -745,6 +978,9 @@
     
 
     <!-- Posters Section (conditional) -->
+    
+
+    <!-- Trailer Section (conditional) -->
     
 </div>
 
@@ -839,6 +1075,10 @@
         
         
         { title: "YOUR LUCKY DAY", category: "film", slug: "your-lucky-day", thumbnail: "/media/thumbnails/your-lucky-day.jpg", preview: "/media/previews/your-lucky-day.mp4" },
+        
+        
+        
+        { title: "HANDLE WITH CARE", category: "film", slug: "handlewithcare", thumbnail: "/media/thumbnails/handlewithcare.jpg", preview: "" },
         
         
         
@@ -1070,11 +1310,20 @@
             window.location.href = '../work.html' + (activeFilter !== 'all' ? `#${activeFilter}` : '');
         }
     });
+
+    // Image Gallery Carousel Functionality
+    
 </script>
 
 
     
 
     
+
+    <!-- Vercel Web Analytics -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

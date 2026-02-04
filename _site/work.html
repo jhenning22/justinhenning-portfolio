@@ -154,6 +154,204 @@
 
         
 
+        /* Gallery Carousel Styles */
+        .gallery-wrapper {
+            position: relative;
+            width: 100%;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-main {
+            position: relative;
+            width: 100%;
+            padding-bottom: 41.78%; /* 2.39:1 aspect ratio */
+            background: #000;
+            overflow: hidden;
+        }
+
+        .gallery-image-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .gallery-main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+        }
+
+        .gallery-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            color: #fff;
+            border: none;
+            font-size: 75px !important;
+            width: auto;
+            height: auto;
+            cursor: pointer;
+            z-index: 10;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            line-height: 1 !important;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important;
+            font-weight: 100 !important;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .gallery-arrow:hover {
+            opacity: 0.7;
+        }
+
+        .gallery-arrow-left {
+            left: 0;
+        }
+
+        .gallery-arrow-right {
+            right: 0;
+        }
+
+        .gallery-thumbnails {
+            display: flex;
+            gap: 12px;
+            margin-top: 1rem;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 8px 0;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .gallery-thumbnails::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .gallery-thumbnails::-webkit-scrollbar-track {
+            background: #f0f0f0;
+        }
+
+        .gallery-thumbnails::-webkit-scrollbar-thumb {
+            background: #999;
+            border-radius: 3px;
+        }
+
+        .gallery-thumbnails::-webkit-scrollbar-thumb:hover {
+            background: #666;
+        }
+
+        .gallery-thumbnail {
+            flex-shrink: 0;
+            width: 120px;
+            height: 60px;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+            border: 2px solid transparent;
+            overflow: hidden;
+        }
+
+        .gallery-thumbnail:hover {
+            opacity: 0.8;
+        }
+
+        .gallery-thumbnail.active {
+            opacity: 1;
+            border-color: #000;
+        }
+
+        .gallery-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Lightbox */
+        .gallery-lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-image {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 50px !important;
+            cursor: pointer;
+            z-index: 10001;
+            line-height: 1 !important;
+            padding: 0;
+            width: auto;
+            height: auto;
+            transition: opacity 0.3s ease;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important;
+            font-weight: 200 !important;
+        }
+
+        .lightbox-close:hover {
+            opacity: 0.7;
+        }
+
+        .gallery-lightbox .gallery-arrow {
+            background: none;
+        }
+
+        .gallery-lightbox .gallery-arrow:hover {
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-arrow {
+                font-size: 50px !important;
+                padding: 15px;
+            }
+
+            .gallery-thumbnail {
+                width: 80px;
+                height: 40px;
+            }
+
+            .lightbox-close {
+                font-size: 40px !important;
+                top: 10px;
+                right: 15px;
+            }
+
+            .lightbox-image {
+                max-width: 95%;
+                max-height: 95%;
+            }
+        }
+
         
     </style>
 
@@ -236,9 +434,12 @@
         <a href="/work/your-lucky-day/" class="project-card" data-category="film" data-project="0">
             <div class="media-container">
                 <div class="project-image" style="background-image: url('/media/thumbnails/your-lucky-day.jpg')"></div>
+                
+                <!-- Video preview -->
                 <video class="project-video" muted loop playsinline preload="none">
                     <source data-src="/media/previews/your-lucky-day.mp4?v=2" type="video/mp4">
                 </video>
+                
             </div>
             <div class="project-info">
                 <div class="project-number"></div>
@@ -251,13 +452,35 @@
         
         
         
+        <!-- HANDLE WITH CARE -->
+        <a href="/work/handlewithcare/" class="project-card" data-category="film" data-project="1" data-gallery="true">
+            <div class="media-container">
+                <div class="project-image" style="background-image: url('/media/thumbnails/handlewithcare.jpg')"></div>
+                
+                <!-- Static thumbnail only, no hover effect -->
+                
+            </div>
+            <div class="project-info">
+                <div class="project-number"></div>
+                <div class="project-title">
+                    <h3>HANDLE WITH CARE</h3>
+                    <p>Film</p>
+                </div>
+            </div>
+        </a>
+        
+        
+        
         <!-- WOODFORD RESERVE -->
-        <a href="/work/woodford-reserve/" class="project-card" data-category="commercial" data-project="1">
+        <a href="/work/woodford-reserve/" class="project-card" data-category="commercial" data-project="2">
             <div class="media-container">
                 <div class="project-image" style="background-image: url('/media/thumbnails/woodford-reserve.jpg')"></div>
+                
+                <!-- Video preview -->
                 <video class="project-video" muted loop playsinline preload="none">
                     <source data-src="/media/previews/woodford-reserve.mp4?v=2" type="video/mp4">
                 </video>
+                
             </div>
             <div class="project-info">
                 <div class="project-number"></div>
@@ -271,12 +494,15 @@
         
         
         <!-- KIA -->
-        <a href="/work/kia/" class="project-card" data-category="automotive" data-project="2">
+        <a href="/work/kia/" class="project-card" data-category="automotive" data-project="3">
             <div class="media-container">
                 <div class="project-image" style="background-image: url('/media/thumbnails/kia.jpg')"></div>
+                
+                <!-- Video preview -->
                 <video class="project-video" muted loop playsinline preload="none">
                     <source data-src="/media/previews/kia.mp4?v=2" type="video/mp4">
                 </video>
+                
             </div>
             <div class="project-info">
                 <div class="project-number"></div>
@@ -290,12 +516,15 @@
         
         
         <!-- ROYAL BANK OF CANADA -->
-        <a href="/work/royal-bank-of-canada/" class="project-card" data-category="commercial" data-project="3">
+        <a href="/work/royal-bank-of-canada/" class="project-card" data-category="commercial" data-project="4">
             <div class="media-container">
                 <div class="project-image" style="background-image: url('/media/thumbnails/rbc.jpg')"></div>
+                
+                <!-- Video preview -->
                 <video class="project-video" muted loop playsinline preload="none">
                     <source data-src="/media/previews/rbc.mp4?v=2" type="video/mp4">
                 </video>
+                
             </div>
             <div class="project-info">
                 <div class="project-number"></div>
@@ -309,12 +538,15 @@
         
         
         <!-- K&amp;N -->
-        <a href="/work/k-n/" class="project-card" data-category="automotive" data-project="4">
+        <a href="/work/k-n/" class="project-card" data-category="automotive" data-project="5">
             <div class="media-container">
                 <div class="project-image" style="background-image: url('/media/thumbnails/kn.jpg')"></div>
+                
+                <!-- Video preview -->
                 <video class="project-video" muted loop playsinline preload="none">
                     <source data-src="/media/previews/kn.mp4?v=2" type="video/mp4">
                 </video>
+                
             </div>
             <div class="project-info">
                 <div class="project-number"></div>
@@ -328,12 +560,15 @@
         
         
         <!-- RAM -->
-        <a href="/work/ram/" class="project-card" data-category="automotive" data-project="5">
+        <a href="/work/ram/" class="project-card" data-category="automotive" data-project="6">
             <div class="media-container">
                 <div class="project-image" style="background-image: url('/media/thumbnails/ram.jpg')"></div>
+                
+                <!-- Video preview -->
                 <video class="project-video" muted loop playsinline preload="none">
                     <source data-src="/media/previews/ram.mp4?v=2" type="video/mp4">
                 </video>
+                
             </div>
             <div class="project-info">
                 <div class="project-number"></div>
@@ -347,12 +582,15 @@
         
         
         <!-- HUAWEI -->
-        <a href="/work/huawei/" class="project-card" data-category="commercial" data-project="6">
+        <a href="/work/huawei/" class="project-card" data-category="commercial" data-project="7">
             <div class="media-container">
                 <div class="project-image" style="background-image: url('/media/thumbnails/huawei.jpg')"></div>
+                
+                <!-- Video preview -->
                 <video class="project-video" muted loop playsinline preload="none">
                     <source data-src="/media/previews/huawei.mp4?v=2" type="video/mp4">
                 </video>
+                
             </div>
             <div class="project-info">
                 <div class="project-number"></div>
@@ -366,12 +604,15 @@
         
         
         <!-- AUDI -->
-        <a href="/work/audi/" class="project-card" data-category="automotive" data-project="7">
+        <a href="/work/audi/" class="project-card" data-category="automotive" data-project="8">
             <div class="media-container">
                 <div class="project-image" style="background-image: url('/media/thumbnails/audi.jpg')"></div>
+                
+                <!-- Video preview -->
                 <video class="project-video" muted loop playsinline preload="none">
                     <source data-src="/media/previews/audi.mp4?v=2" type="video/mp4">
                 </video>
+                
             </div>
             <div class="project-info">
                 <div class="project-number"></div>
@@ -385,12 +626,15 @@
         
         
         <!-- JEEP -->
-        <a href="/work/jeep/" class="project-card" data-category="automotive" data-project="8">
+        <a href="/work/jeep/" class="project-card" data-category="automotive" data-project="9">
             <div class="media-container">
                 <div class="project-image" style="background-image: url('/media/thumbnails/jeep.jpg')"></div>
+                
+                <!-- Video preview -->
                 <video class="project-video" muted loop playsinline preload="none">
                     <source data-src="/media/previews/jeep.mp4?v=2" type="video/mp4">
                 </video>
+                
             </div>
             <div class="project-info">
                 <div class="project-number"></div>
@@ -404,12 +648,15 @@
         
         
         <!-- FORD -->
-        <a href="/work/ford/" class="project-card" data-category="automotive" data-project="9">
+        <a href="/work/ford/" class="project-card" data-category="automotive" data-project="10">
             <div class="media-container">
                 <div class="project-image" style="background-image: url('/media/thumbnails/ford.jpg')"></div>
+                
+                <!-- Video preview -->
                 <video class="project-video" muted loop playsinline preload="none">
                     <source data-src="/media/previews/ford.mp4?v=2" type="video/mp4">
                 </video>
+                
             </div>
             <div class="project-info">
                 <div class="project-number"></div>
@@ -423,12 +670,15 @@
         
         
         <!-- AMERICAN OUTLAWS -->
-        <a href="/work/american-outlaws/" class="project-card" data-category="film" data-project="10">
+        <a href="/work/american-outlaws/" class="project-card" data-category="film" data-project="11">
             <div class="media-container">
                 <div class="project-image" style="background-image: url('/media/thumbnails/american-outlaws.jpg')"></div>
+                
+                <!-- Video preview -->
                 <video class="project-video" muted loop playsinline preload="none">
                     <source data-src="/media/previews/american-outlaws.mp4?v=2" type="video/mp4">
                 </video>
+                
             </div>
             <div class="project-info">
                 <div class="project-number"></div>
@@ -442,12 +692,15 @@
         
         
         <!-- ANA PAULA -->
-        <a href="/work/ana-paula/" class="project-card" data-category="film" data-project="11">
+        <a href="/work/ana-paula/" class="project-card" data-category="film" data-project="12">
             <div class="media-container">
                 <div class="project-image" style="background-image: url('/media/thumbnails/ana-paula.jpg')"></div>
+                
+                <!-- Video preview -->
                 <video class="project-video" muted loop playsinline preload="none">
                     <source data-src="/media/previews/ana-paula.mp4?v=2" type="video/mp4">
                 </video>
+                
             </div>
             <div class="project-info">
                 <div class="project-number"></div>
@@ -461,12 +714,15 @@
         
         
         <!-- LA LUCHA -->
-        <a href="/work/la-lucha/" class="project-card" data-category="film" data-project="12">
+        <a href="/work/la-lucha/" class="project-card" data-category="film" data-project="13">
             <div class="media-container">
                 <div class="project-image" style="background-image: url('/media/thumbnails/la-lucha.jpg')"></div>
+                
+                <!-- Video preview -->
                 <video class="project-video" muted loop playsinline preload="none">
                     <source data-src="/media/previews/la-lucha.mp4?v=2" type="video/mp4">
                 </video>
+                
             </div>
             <div class="project-info">
                 <div class="project-number"></div>
@@ -480,12 +736,15 @@
         
         
         <!-- PEI -->
-        <a href="/work/pei/" class="project-card" data-category="commercial" data-project="13">
+        <a href="/work/pei/" class="project-card" data-category="commercial" data-project="14">
             <div class="media-container">
                 <div class="project-image" style="background-image: url('/media/thumbnails/pei.jpg')"></div>
+                
+                <!-- Video preview -->
                 <video class="project-video" muted loop playsinline preload="none">
                     <source data-src="/media/previews/pei.mp4?v=2" type="video/mp4">
                 </video>
+                
             </div>
             <div class="project-info">
                 <div class="project-number"></div>
@@ -499,12 +758,15 @@
         
         
         <!-- LAMBORGHINI -->
-        <a href="/work/lamborghini/" class="project-card" data-category="automotive" data-project="14">
+        <a href="/work/lamborghini/" class="project-card" data-category="automotive" data-project="15">
             <div class="media-container">
                 <div class="project-image" style="background-image: url('/media/thumbnails/lamborghini.jpg')"></div>
+                
+                <!-- Video preview -->
                 <video class="project-video" muted loop playsinline preload="none">
                     <source data-src="/media/previews/lamborghini.mp4?v=2" type="video/mp4">
                 </video>
+                
             </div>
             <div class="project-info">
                 <div class="project-number"></div>
@@ -518,12 +780,15 @@
         
         
         <!-- RALPH LAUREN -->
-        <a href="/work/ralph-lauren/" class="project-card" data-category="commercial" data-project="15">
+        <a href="/work/ralph-lauren/" class="project-card" data-category="commercial" data-project="16">
             <div class="media-container">
                 <div class="project-image" style="background-image: url('/media/thumbnails/ralph-lauren.jpg')"></div>
+                
+                <!-- Video preview -->
                 <video class="project-video" muted loop playsinline preload="none">
                     <source data-src="/media/previews/ralph-lauren.mp4?v=2" type="video/mp4">
                 </video>
+                
             </div>
             <div class="project-info">
                 <div class="project-number"></div>
@@ -537,12 +802,15 @@
         
         
         <!-- GATORADE -->
-        <a href="/work/gatorade/" class="project-card" data-category="commercial" data-project="16">
+        <a href="/work/gatorade/" class="project-card" data-category="commercial" data-project="17">
             <div class="media-container">
                 <div class="project-image" style="background-image: url('/media/thumbnails/gatorade.jpg')"></div>
+                
+                <!-- Video preview -->
                 <video class="project-video" muted loop playsinline preload="none">
                     <source data-src="/media/previews/gatorade.mp4?v=2" type="video/mp4">
                 </video>
+                
             </div>
             <div class="project-info">
                 <div class="project-number"></div>
@@ -556,12 +824,15 @@
         
         
         <!-- MARRIOTT -->
-        <a href="/work/marriott/" class="project-card" data-category="commercial" data-project="17">
+        <a href="/work/marriott/" class="project-card" data-category="commercial" data-project="18">
             <div class="media-container">
                 <div class="project-image" style="background-image: url('/media/thumbnails/marriott.jpg')"></div>
+                
+                <!-- Video preview -->
                 <video class="project-video" muted loop playsinline preload="none">
                     <source data-src="/media/previews/marriott.mp4?v=2" type="video/mp4">
                 </video>
+                
             </div>
             <div class="project-info">
                 <div class="project-number"></div>
@@ -575,12 +846,15 @@
         
         
         <!-- NIKON: CLARK LITTLE -->
-        <a href="/work/nikon-clark-little/" class="project-card" data-category="commercial" data-project="18">
+        <a href="/work/nikon-clark-little/" class="project-card" data-category="commercial" data-project="19">
             <div class="media-container">
                 <div class="project-image" style="background-image: url('/media/thumbnails/nikon-clark.jpg')"></div>
+                
+                <!-- Video preview -->
                 <video class="project-video" muted loop playsinline preload="none">
                     <source data-src="/media/previews/nikon-clark.mp4?v=2" type="video/mp4">
                 </video>
+                
             </div>
             <div class="project-info">
                 <div class="project-number"></div>
@@ -594,12 +868,15 @@
         
         
         <!-- NIKON: IVAR -->
-        <a href="/work/nikon-ivar/" class="project-card" data-category="commercial" data-project="19">
+        <a href="/work/nikon-ivar/" class="project-card" data-category="commercial" data-project="20">
             <div class="media-container">
                 <div class="project-image" style="background-image: url('/media/thumbnails/nikon-ivar.jpg')"></div>
+                
+                <!-- Video preview -->
                 <video class="project-video" muted loop playsinline preload="none">
                     <source data-src="/media/previews/nikon-ivar.mp4?v=2" type="video/mp4">
                 </video>
+                
             </div>
             <div class="project-info">
                 <div class="project-number"></div>
@@ -613,12 +890,15 @@
         
         
         <!-- CHEVROLET -->
-        <a href="/work/chevrolet/" class="project-card" data-category="commercial" data-project="20">
+        <a href="/work/chevrolet/" class="project-card" data-category="commercial" data-project="21">
             <div class="media-container">
                 <div class="project-image" style="background-image: url('/media/thumbnails/chevrolet.jpg')"></div>
+                
+                <!-- Video preview -->
                 <video class="project-video" muted loop playsinline preload="none">
                     <source data-src="/media/previews/chevrolet.mp4?v=2" type="video/mp4">
                 </video>
+                
             </div>
             <div class="project-info">
                 <div class="project-number"></div>
@@ -636,12 +916,15 @@
         
         
         <!-- ADIDAS -->
-        <a href="/work/adidas/" class="project-card" data-category="commercial" data-project="23">
+        <a href="/work/adidas/" class="project-card" data-category="commercial" data-project="24">
             <div class="media-container">
                 <div class="project-image" style="background-image: url('/media/thumbnails/adidas.jpg')"></div>
+                
+                <!-- Video preview -->
                 <video class="project-video" muted loop playsinline preload="none">
                     <source data-src="/media/previews/adidas.mp4?v=2" type="video/mp4">
                 </video>
+                
             </div>
             <div class="project-info">
                 <div class="project-number"></div>
@@ -657,12 +940,15 @@
         
         
         <!-- RAM: BONEYARD -->
-        <a href="/work/ram-boneyard/" class="project-card" data-category="automotive" data-project="25">
+        <a href="/work/ram-boneyard/" class="project-card" data-category="automotive" data-project="26">
             <div class="media-container">
                 <div class="project-image" style="background-image: url('/media/thumbnails/ram-boneyard.jpg')"></div>
+                
+                <!-- Video preview -->
                 <video class="project-video" muted loop playsinline preload="none">
                     <source data-src="/media/previews/ram-boneyard.mp4?v=2" type="video/mp4">
                 </video>
+                
             </div>
             <div class="project-info">
                 <div class="project-number"></div>
@@ -678,12 +964,15 @@
         
         
         <!-- ALFA ROMEO -->
-        <a href="/work/alfa-romeo/" class="project-card" data-category="automotive" data-project="27">
+        <a href="/work/alfa-romeo/" class="project-card" data-category="automotive" data-project="28">
             <div class="media-container">
                 <div class="project-image" style="background-image: url('/media/thumbnails/alfa-romeo.jpg')"></div>
+                
+                <!-- Video preview -->
                 <video class="project-video" muted loop playsinline preload="none">
                     <source data-src="/media/previews/alfa-romeo.mp4?v=2" type="video/mp4">
                 </video>
+                
             </div>
             <div class="project-info">
                 <div class="project-number"></div>
@@ -701,12 +990,15 @@
         
         
         <!-- TESLA -->
-        <a href="/work/tesla/" class="project-card" data-category="automotive" data-project="30">
+        <a href="/work/tesla/" class="project-card" data-category="automotive" data-project="31">
             <div class="media-container">
                 <div class="project-image" style="background-image: url('/media/thumbnails/tesla.jpg')"></div>
+                
+                <!-- Video preview -->
                 <video class="project-video" muted loop playsinline preload="none">
                     <source data-src="/media/previews/tesla.mp4?v=2" type="video/mp4">
                 </video>
+                
             </div>
             <div class="project-info">
                 <div class="project-number"></div>
@@ -728,5 +1020,11 @@
     
 
     
+
+    <!-- Vercel Web Analytics -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
