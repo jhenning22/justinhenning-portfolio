@@ -110,6 +110,204 @@
 
         
 
+        /* Gallery Carousel Styles */
+        .gallery-wrapper {
+            position: relative;
+            width: 100%;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-main {
+            position: relative;
+            width: 100%;
+            padding-bottom: 41.78%; /* 2.39:1 aspect ratio */
+            background: #000;
+            overflow: hidden;
+        }
+
+        .gallery-image-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .gallery-main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+        }
+
+        .gallery-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            color: #fff;
+            border: none;
+            font-size: 75px !important;
+            width: auto;
+            height: auto;
+            cursor: pointer;
+            z-index: 10;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            line-height: 1 !important;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important;
+            font-weight: 100 !important;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .gallery-arrow:hover {
+            opacity: 0.7;
+        }
+
+        .gallery-arrow-left {
+            left: 0;
+        }
+
+        .gallery-arrow-right {
+            right: 0;
+        }
+
+        .gallery-thumbnails {
+            display: flex;
+            gap: 12px;
+            margin-top: 1rem;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 8px 0;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .gallery-thumbnails::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .gallery-thumbnails::-webkit-scrollbar-track {
+            background: #f0f0f0;
+        }
+
+        .gallery-thumbnails::-webkit-scrollbar-thumb {
+            background: #999;
+            border-radius: 3px;
+        }
+
+        .gallery-thumbnails::-webkit-scrollbar-thumb:hover {
+            background: #666;
+        }
+
+        .gallery-thumbnail {
+            flex-shrink: 0;
+            width: 120px;
+            height: 60px;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+            border: 2px solid transparent;
+            overflow: hidden;
+        }
+
+        .gallery-thumbnail:hover {
+            opacity: 0.8;
+        }
+
+        .gallery-thumbnail.active {
+            opacity: 1;
+            border-color: #000;
+        }
+
+        .gallery-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Lightbox */
+        .gallery-lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-image {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 50px !important;
+            cursor: pointer;
+            z-index: 10001;
+            line-height: 1 !important;
+            padding: 0;
+            width: auto;
+            height: auto;
+            transition: opacity 0.3s ease;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important;
+            font-weight: 200 !important;
+        }
+
+        .lightbox-close:hover {
+            opacity: 0.7;
+        }
+
+        .gallery-lightbox .gallery-arrow {
+            background: none;
+        }
+
+        .gallery-lightbox .gallery-arrow:hover {
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-arrow {
+                font-size: 50px !important;
+                padding: 15px;
+            }
+
+            .gallery-thumbnail {
+                width: 80px;
+                height: 40px;
+            }
+
+            .lightbox-close {
+                font-size: 40px !important;
+                top: 10px;
+                right: 15px;
+            }
+
+            .lightbox-image {
+                max-width: 95%;
+                max-height: 95%;
+            }
+        }
+
         
     </style>
 
@@ -210,6 +408,34 @@
         padding: 0;
         left: 0;
         background: #000;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    /* Poster backgrounds for each section to prevent black flash */
+    #section-0 {
+        background-image: url('/media/posters/your-lucky-day.jpg');
+    }
+
+    #section-1 {
+        background-image: url('/media/posters/woodford-reserve.jpg');
+    }
+
+    #section-2 {
+        background-image: url('/media/posters/kia.jpg');
+    }
+
+    #section-3 {
+        background-image: url('/media/posters/rbc.jpg');
+    }
+
+    #section-4 {
+        background-image: url('/media/posters/kn.jpg');
+    }
+
+    #section-5 {
+        background-image: url('/media/posters/ram.jpg');
     }
 
     /* Remove all hover effects - override global styles */
@@ -773,7 +999,7 @@
                 
                 <!-- YOUR LUCKY DAY -->
                 <section class="fullscreen-section" data-category="film" id="section-0" data-modal-video="872749030" style="cursor: pointer;">
-                    <video class="fullscreen-video-bg" muted loop playsinline preload="none" poster="/media/thumbnails/your-lucky-day.jpg" data-src="/media/previews/your-lucky-day.mp4?v=2">
+                    <video class="fullscreen-video-bg" muted loop playsinline preload="metadata" poster="/media/thumbnails/your-lucky-day.jpg" data-src="/media/previews/your-lucky-day.mp4?v=2">
                     </video>
                     <div class="play-button">
                         <svg viewBox="0 0 24 24">
@@ -848,7 +1074,11 @@
             
                 
             
+                
+            
         
+            
+                
             
                 
             
@@ -935,6 +1165,8 @@
                 
             
                 
+            
+                
                 <!-- KIA -->
                 <section class="fullscreen-section" data-category="automotive" id="section-2" data-modal-video="913839989" style="cursor: pointer;">
                     <video class="fullscreen-video-bg" muted loop playsinline preload="none" poster="/media/thumbnails/kia.jpg" data-src="/media/previews/kia.mp4?v=2">
@@ -1009,6 +1241,8 @@
                 
             
         
+            
+                
             
                 
             
@@ -1099,6 +1333,8 @@
                 
             
                 
+            
+                
                 <!-- K&amp;N -->
                 <section class="fullscreen-section" data-category="automotive" id="section-4" data-modal-video="523316278" style="cursor: pointer;">
                     <video class="fullscreen-video-bg" muted loop playsinline preload="none" poster="/media/thumbnails/kn.jpg" data-src="/media/previews/kn.mp4?v=2">
@@ -1169,6 +1405,8 @@
                 
             
         
+            
+                
             
                 
             
@@ -1356,6 +1594,13 @@
     document.addEventListener('DOMContentLoaded', function() {
         setViewportHeight();
 
+        // Preload first video immediately for instant playback
+        const firstVideo = document.querySelector('.fullscreen-video-bg');
+        if (firstVideo && firstVideo.dataset.src && !firstVideo.src) {
+            firstVideo.src = firstVideo.dataset.src;
+            firstVideo.load();
+        }
+
         // CLEAN UP: If page loaded with modal state, clear it
         if (window.location.search.includes('modal=')) {
             window.location.replace(window.location.pathname);
@@ -1408,6 +1653,10 @@
                     
                 ]
             },
+            
+            
+            
+            
             
             
             
@@ -1557,6 +1806,8 @@
             
             
             
+            
+            
             '913839989': {
                 title: 'KIA',
                 subtitle: 'The Good Life',
@@ -1572,6 +1823,8 @@
                     
                 ]
             },
+            
+            
             
             
             
@@ -1723,6 +1976,8 @@
             
             
             
+            
+            
             '523316278': {
                 title: 'K&N',
                 subtitle: '',
@@ -1736,6 +1991,8 @@
                     
                 ]
             },
+            
+            
             
             
             
@@ -2021,6 +2278,24 @@
         const totalSections = sections.length;
         const scrollButton = document.querySelector('.scroll-button-container');
 
+        // Function to preload adjacent videos (current + previous + next)
+        function preloadAdjacentVideos(currentIndex) {
+            const indicesToLoad = [
+                currentIndex - 1,
+                currentIndex,
+                currentIndex + 1
+            ].filter(i => i >= 0 && i < totalSections);
+
+            indicesToLoad.forEach(index => {
+                const section = sections[index];
+                const video = section.querySelector('.fullscreen-video-bg');
+                if (video && video.dataset.src && !video.src) {
+                    video.src = video.dataset.src;
+                    video.load();
+                }
+            });
+        }
+
         // Track current section with Intersection Observer
         const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -2029,6 +2304,9 @@
                     const match = sectionId.match(/section-(\d+)/);
                     if (match) {
                         currentSectionIndex = parseInt(match[1]);
+
+                        // Preload adjacent videos when section comes into view
+                        preloadAdjacentVideos(currentSectionIndex);
 
                         if (currentSectionIndex === totalSections - 1) {
                             scrollButton.style.display = 'none';
@@ -2075,7 +2353,8 @@
                 }
             });
         }, {
-            threshold: 0.5
+            threshold: 0.2,        // Start loading when 20% visible (earlier than before)
+            rootMargin: '100px'    // Start loading 100px before entering viewport
         });
 
         videos.forEach(video => {
@@ -2300,5 +2579,11 @@
     
 
     
+
+    <!-- Vercel Web Analytics -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
