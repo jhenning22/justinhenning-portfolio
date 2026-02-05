@@ -17,7 +17,11 @@ workPageStyles: true
         <!-- {{ project.title }} -->
         <a href="/work/{{ project.slug }}/" class="project-card{% if project.large %} large{% endif %}" data-category="{{ project.category | lower }}" data-project="{{ loop.index0 }}"{% if project.galleryImages %} data-gallery="true"{% endif %}>
             <div class="media-container">
-                <div class="project-image" style="background-image: url('{{ project.thumbnail }}')"></div>
+                <!-- Lazy-loaded thumbnail with WebP and JPG fallback -->
+                <picture class="project-image">
+                    <source data-srcset="{{ project.thumbnail | replace('.jpg', '.webp') }}" type="image/webp">
+                    <img data-src="{{ project.thumbnail }}" alt="{{ project.title }}" loading="lazy" class="thumbnail-img">
+                </picture>
                 {% if project.useStaticThumbnail %}
                 <!-- Static thumbnail only, no hover effect -->
                 {% elif project.galleryImages %}

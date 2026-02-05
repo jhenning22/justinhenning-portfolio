@@ -62,6 +62,35 @@ window.addEventListener('scroll', () => {
     lastScrollTop = currentScroll;
 }, { passive: true });
 
+// Intersection Observer for lazy loading thumbnails
+const thumbnailObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const img = entry.target;
+            if (img.dataset.src && !img.src) {
+                // Load the image
+                img.src = img.dataset.src;
+
+                // Load WebP source if available
+                const picture = img.parentElement;
+                const webpSource = picture.querySelector('source[type="image/webp"]');
+                if (webpSource && webpSource.dataset.srcset) {
+                    webpSource.srcset = webpSource.dataset.srcset;
+                }
+
+                // Add loaded class for fade-in effect
+                img.onload = () => {
+                    img.classList.add('loaded');
+                };
+
+                thumbnailObserver.unobserve(img);
+            }
+        }
+    });
+}, {
+    rootMargin: '100px' // Load thumbnails 100px before they enter viewport
+});
+
 // Intersection Observer for lazy loading videos
 const videoObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -84,6 +113,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectCards = document.querySelectorAll('.project-card');
 
     projectCards.forEach((card) => {
+        // Lazy load thumbnails
+        const thumbnail = card.querySelector('.thumbnail-img');
+        if (thumbnail) {
+            thumbnailObserver.observe(thumbnail);
+        }
+
+        // Lazy load and handle video previews
         const video = card.querySelector('.project-video');
 
         if (video) {
