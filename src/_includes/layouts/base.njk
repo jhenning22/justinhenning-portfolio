@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0{% if isMainPage %}, viewport-fit=cover{% endif %}">
     <title>{{ title | default("Justin Henning - Cinematographer") }}</title>
 
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://player.vimeo.com" crossorigin>
+    <link rel="preconnect" href="https://i.vimeocdn.com" crossorigin>
+    <link rel="dns-prefetch" href="https://vimeo.com">
+
     <!-- Preload fonts to prevent FOUT -->
     {% if isProjectPage %}
     <link rel="preload" href="../../fonts/Tonka-MediumCondensed.woff2" as="font" type="font/woff2" crossorigin>

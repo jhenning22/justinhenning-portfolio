@@ -1,7 +1,21 @@
 const Image = require("@11ty/eleventy-img");
 const path = require("path");
+const htmlmin = require("html-minifier-terser");
 
 module.exports = function(eleventyConfig) {
+
+  // HTML minification transform
+  eleventyConfig.addTransform("htmlmin", function(content, outputPath) {
+    if (outputPath && outputPath.endsWith(".html")) {
+      return htmlmin.minify(content, {
+        collapseWhitespace: true,
+        removeComments: true,
+        minifyCSS: true,
+        minifyJS: true
+      });
+    }
+    return content;
+  });
 
   // Image shortcode for responsive images with srcset
   eleventyConfig.addNunjucksAsyncShortcode("responsiveImage", async function(src, alt, sizes = "100vw", widths = [320, 640, 1280, 2560], className = "") {
