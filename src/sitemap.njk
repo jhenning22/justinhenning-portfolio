@@ -1,0 +1,26 @@
+---
+permalink: sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://justinhenning.com/</loc>
+  </url>
+  <url>
+    <loc>https://justinhenning.com/work.html</loc>
+  </url>
+  <url>
+    <loc>https://justinhenning.com/photography.html</loc>
+  </url>
+  <url>
+    <loc>https://justinhenning.com/info.html</loc>
+  </url>
+  {%- for project in projects.projects %}
+  {%- if project.active %}
+  <url>
+    <loc>https://justinhenning.com/work/{{ project.slug }}/</loc>
+  </url>
+  {%- endif %}
+  {%- endfor %}
+</urlset>

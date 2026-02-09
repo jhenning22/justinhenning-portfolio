@@ -100,6 +100,8 @@ module.exports = function(eleventyConfig) {
 
   // Copy other assets
   eleventyConfig.addPassthroughCopy("src/create_previews.sh");
+  eleventyConfig.addPassthroughCopy("src/robots.txt");
+  eleventyConfig.addPassthroughCopy("src/favicon.svg");
 
   // Configure 11ty
   return {

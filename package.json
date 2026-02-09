@@ -20,9 +20,7 @@
   "dependencies": {
     "@11ty/eleventy": "^3.1.2",
     "@11ty/eleventy-img": "^6.0.4",
+    "html-minifier-terser": "^7.2.0",
     "sharp": "^0.34.5"
-  },
-  "devDependencies": {
-    "html-minifier-terser": "^7.2.0"
   }
 }
