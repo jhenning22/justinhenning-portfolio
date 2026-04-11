@@ -86,6 +86,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/media/social-previews");
   eleventyConfig.addPassthroughCopy("src/media/gallery");
   eleventyConfig.addPassthroughCopy("src/media/thumbnails");
+  eleventyConfig.addPassthroughCopy("src/media/info-bts.webp");
 
   // Copy stylesheets
   eleventyConfig.addPassthroughCopy("src/style.css");
